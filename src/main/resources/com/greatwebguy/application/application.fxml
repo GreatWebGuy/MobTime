@@ -9,13 +9,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
+<?import org.controlsfx.glyphfont.*?>
 
 <VBox prefHeight="597.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
   <children>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="609.0" style="-fx-background-color: black;">
         <items>
-          <Button fx:id="settingsButton" disable="true" mnemonicParsing="false" text="Settings" />
-            <Button fx:id="stopButton" mnemonicParsing="false" text="Stop" />
+          	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
+          		<graphic>
+			        <Glyph fontFamily="FontAwesome" icon="GEAR" styleClass="toolbar-button" />
+			    </graphic>
+          	</Button>
+            <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
+           		<graphic>
+			        <Glyph fontFamily="FontAwesome" icon="STOP" styleClass="toolbar-button"/>
+			    </graphic>
+          	</Button>
         </items>
       </ToolBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">

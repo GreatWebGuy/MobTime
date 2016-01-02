@@ -6,3 +6,11 @@
 .menu-bar .menu .label {
     -fx-text-fill: #2d3e4c;
 }
+ 
+.toolbar-button {
+	-fx-background-color: #000000;
+	-fx-color: #FFFFFF;
+	-fx-graphic-text-gap: 0px;
+    -fx-text-fill: #FFFFFF;
+}
+
