@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
@@ -13,20 +14,32 @@
 
 <VBox prefHeight="597.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
   <children>
-      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="609.0" style="-fx-background-color: black;">
-        <items>
-          	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
-          		<graphic>
-			        <Glyph fontFamily="FontAwesome" icon="GEAR" styleClass="toolbar-button" />
-			    </graphic>
-          	</Button>
-            <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
-           		<graphic>
-			        <Glyph fontFamily="FontAwesome" icon="STOP" styleClass="toolbar-button"/>
-			    </graphic>
-          	</Button>
-        </items>
-      </ToolBar>
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="toolbar">
+         <children>
+            <Label alignment="CENTER" styleClass="toolbar" text="MobTime" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <ToolBar nodeOrientation="RIGHT_TO_LEFT" styleClass="toolbar" AnchorPane.rightAnchor="0.0">
+              <items>
+                	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
+                		<graphic>
+      			        <Glyph fontFamily="FontAwesome" icon="GEAR" styleClass="toolbar-button" />
+      			    </graphic>
+                	</Button>
+                  <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
+                 		<graphic>
+      			        <Glyph fontFamily="FontAwesome" icon="STOP" styleClass="toolbar-button" />
+      			    </graphic>
+                	</Button>
+              </items>
+            </ToolBar>
+         </children>
+      </AnchorPane>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
       <children>
             <Button fx:id="startButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" snapToPixel="false" style="-fx-background-color: #333333;" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

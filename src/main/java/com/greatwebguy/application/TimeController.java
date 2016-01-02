@@ -5,9 +5,9 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.animation.Animation.Status;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -18,6 +18,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class TimeController implements Initializable {
@@ -26,6 +29,7 @@ public class TimeController implements Initializable {
 	private LocalTime time = LocalTime.of(0, STARTTIME, 0);
 	private IntegerProperty timeInSeconds = new SimpleIntegerProperty(STARTTIME * 60);
 	private StringProperty timeMinutes = new SimpleStringProperty("Start");
+	
     @FXML //  fx:id="startButton"
     private Button startButton; // Value injected by FXMLLoader
     
@@ -38,6 +42,7 @@ public class TimeController implements Initializable {
     @FXML // fx:id="timerLabel"
     private Label timerLabel;
     
+    
 
     @Override // This method is called by the FXMLLoader when initialization is complete
     public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -45,7 +50,7 @@ public class TimeController implements Initializable {
         assert stopButton != null : "fx:id=\"stopButton\" was not injected: check your FXML file 'application.fxml'.";
         assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'application.fxml'.";
         assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
-        // initialize your logic here: all @FXML variables will have been injected
+        
         timerLabel.textProperty().bind(timeMinutes);
         	
         startButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -99,6 +104,16 @@ public class TimeController implements Initializable {
     	}
     	timeMinutes.set("Rotate");
     	startButton.setStyle("-fx-background-color:#FF0000");
+    	URL resource = getClass().getResource("door-bell.wav");
+    	Media doorBell = new Media(resource.toString());
+    	MediaPlayer mediaPlayer = new MediaPlayer(doorBell);
+    	mediaPlayer.play();
+    	Stage window = (Stage)timerLabel.getScene().getWindow();
+        window.setFullScreen(true);
+        window.setFullScreen(false);
+        window.show();
+        window.requestFocus();
+    	
     }
 
     private void resetStartState() {
