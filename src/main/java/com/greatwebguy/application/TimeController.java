@@ -1,15 +1,12 @@
 package com.greatwebguy.application;
 
 import java.net.URL;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -25,9 +22,7 @@ import javafx.util.Duration;
 
 public class TimeController implements Initializable {
 	private Timeline timeline;
-	private int STARTTIME = 1;
-	private LocalTime time = LocalTime.of(0, STARTTIME, 0);
-	private IntegerProperty timeInSeconds = new SimpleIntegerProperty(STARTTIME * 60);
+	
 	private StringProperty timeMinutes = new SimpleStringProperty("Start");
 	
     @FXML //  fx:id="startButton"
@@ -58,15 +53,15 @@ public class TimeController implements Initializable {
             public void handle(ActionEvent event) {
             	if(timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
             		resetStartState();
-					timeMinutes.set(time.format(DateTimeFormatter.ofPattern("mm:ss")));
+					timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
 					timeline = new Timeline();
-					timeline.setCycleCount(timeInSeconds.get() + 1);
+					timeline.setCycleCount(Settings.instance().getTimeInSeconds());
 					timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 						// KeyFrame event handler
 						public void handle(ActionEvent event) {
-							time = time.minusSeconds(1);
-							timeMinutes.set(time.format(DateTimeFormatter.ofPattern("mm:ss")));
-							if ("00:00".equals(time.format(DateTimeFormatter.ofPattern("mm:ss")))) {
+							Settings.instance().setTime(Settings.instance().getTime().minusSeconds(1));
+							timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+							if ("00:00".equals(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
 								showRotate();
 							}
 						}
@@ -121,8 +116,7 @@ public class TimeController implements Initializable {
     		timeline.stop();
     	}
     	timeMinutes.set("Start");
-    	time = LocalTime.of(0, STARTTIME, 0);
-    	timeInSeconds = new SimpleIntegerProperty(STARTTIME * 60);
+    	Settings.instance().initializeTime();
     	startButton.setStyle("-fx-background-color:#333333");
     }
 }
