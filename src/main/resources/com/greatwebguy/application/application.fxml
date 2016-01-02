@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.media.*?>
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<VBox prefHeight="597.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
+  <children>
+      <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="41.0" prefWidth="609.0" style="-fx-background-color: black;">
+        <items>
+          <Button fx:id="settingsButton" mnemonicParsing="false" text="Settings" visible="false" />
+            <Button fx:id="stopButton" mnemonicParsing="false" text="Stop" />
+        </items>
+      </ToolBar>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
+      <children>
+            <Button fx:id="startButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" snapToPixel="false" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <graphic>
+              <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false">
+                <font>
+                  <Font name="Times New Roman" size="135.0" />
+                </font>
+              </Label>
+               </graphic>
+            </Button>
+      </children>
+    </AnchorPane>
+  </children>
+  <stylesheets>
+    <URL value="@application.css" />
+  </stylesheets>
+</VBox>
