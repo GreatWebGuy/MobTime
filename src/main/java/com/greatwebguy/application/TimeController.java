@@ -22,7 +22,7 @@ import javafx.util.Duration;
 
 public class TimeController implements Initializable {
 	private Timeline timeline;
-	private int STARTTIME = 5;
+	private int STARTTIME = 1;
 	private LocalTime time = LocalTime.of(0, STARTTIME, 0);
 	private IntegerProperty timeInSeconds = new SimpleIntegerProperty(STARTTIME * 60);
 	private StringProperty timeMinutes = new SimpleStringProperty("Start");
@@ -52,6 +52,7 @@ public class TimeController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
             	if(timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
+            		resetStartState();
 					timeMinutes.set(time.format(DateTimeFormatter.ofPattern("mm:ss")));
 					timeline = new Timeline();
 					timeline.setCycleCount(timeInSeconds.get() + 1);
@@ -61,11 +62,13 @@ public class TimeController implements Initializable {
 							time = time.minusSeconds(1);
 							timeMinutes.set(time.format(DateTimeFormatter.ofPattern("mm:ss")));
 							if ("00:00".equals(time.format(DateTimeFormatter.ofPattern("mm:ss")))) {
-								timeline.stop();
+								showRotate();
 							}
 						}
+
 					}));
 					timeline.playFromStart();
+					startButton.setStyle("-fx-background-color:#71B284");
             	} else {
             		switch (timeline.getStatus()) {
 					case RUNNING:
@@ -85,13 +88,26 @@ public class TimeController implements Initializable {
         stopButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-            	if(timeline != null) {
-            		timeline.stop();
-            	}
-            	timeMinutes.set("Start");
-            	time = LocalTime.of(0, STARTTIME, 0);
-            	timeInSeconds = new SimpleIntegerProperty(STARTTIME * 60);
+            	resetStartState();
             }
         });
+    }
+    
+    private void showRotate() {
+    	if(timeline != null) {
+    		timeline.stop();
+    	}
+    	timeMinutes.set("Rotate");
+    	startButton.setStyle("-fx-background-color:#FF0000");
+    }
+
+    private void resetStartState() {
+    	if(timeline != null) {
+    		timeline.stop();
+    	}
+    	timeMinutes.set("Start");
+    	time = LocalTime.of(0, STARTTIME, 0);
+    	timeInSeconds = new SimpleIntegerProperty(STARTTIME * 60);
+    	startButton.setStyle("-fx-background-color:#333333");
     }
 }
