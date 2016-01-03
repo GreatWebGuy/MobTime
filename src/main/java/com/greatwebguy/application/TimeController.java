@@ -69,6 +69,8 @@ public class TimeController implements Initializable {
 					}));
 					timeline.playFromStart();
 					startButton.setStyle("-fx-background-color:#71B284");
+					hideWindow();
+					
             	} else {
             		switch (timeline.getStatus()) {
 					case RUNNING:
@@ -76,6 +78,7 @@ public class TimeController implements Initializable {
 						break;
 					case PAUSED:
 						timeline.play();
+						hideWindow();
 						break;
 					default:
 						break;
@@ -104,9 +107,7 @@ public class TimeController implements Initializable {
     	MediaPlayer mediaPlayer = new MediaPlayer(doorBell);
     	mediaPlayer.play();
     	Stage window = (Stage)timerLabel.getScene().getWindow();
-        window.setFullScreen(true);
-        window.setFullScreen(false);
-        window.show();
+        window.toFront();
         window.requestFocus();
     	
     }
@@ -119,4 +120,15 @@ public class TimeController implements Initializable {
     	Settings.instance().initializeTime();
     	startButton.setStyle("-fx-background-color:#333333");
     }
+    
+	private void hideWindow() {
+		Timeline hide = new Timeline(1, new KeyFrame(Duration.seconds(2), new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent actionEvent) {
+				Stage window = (Stage) timerLabel.getScene().getWindow();
+				window.toBack();
+			}
+		}));
+		hide.playFromStart();
+	}
 }

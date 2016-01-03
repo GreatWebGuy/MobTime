@@ -1,5 +1,6 @@
 .toolbar {
 	-fx-background-color: black;
+	-fx-text-fill: #FFFFFF;
  }
  
 .toolbar-button {

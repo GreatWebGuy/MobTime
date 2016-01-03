@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="499.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="499.0" styleClass="toolbar" text="Settings" textAlignment="CENTER">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <AnchorPane prefHeight="64.0" prefWidth="499.0">
+         <children>
+            <TextField alignment="CENTER" editable="false" layoutX="191.0" layoutY="19.0" prefHeight="27.0" prefWidth="35.0" />
+            <Label layoutX="146.0" layoutY="19.0" prefHeight="27.0" prefWidth="45.0" text="Time" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

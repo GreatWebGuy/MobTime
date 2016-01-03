@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class Settings {
 	private static Settings settings = new Settings();
-	private int DEFAULT_START = 5;
+	private int DEFAULT_START = 1;
 	private int startTime = DEFAULT_START;
 	private LocalTime time;
 	private List<People> people = new ArrayList<People>();
@@ -24,6 +24,14 @@ public class Settings {
 	
 	public void initializeTime() {
 		time = LocalTime.of(0, startTime, 0);
+	}
+	
+	public void setStartTime(int minutes) {
+		startTime = minutes;
+	}
+	
+	public int getStartTime() {
+		return startTime;
 	}
 
 	public LocalTime getTime() {
