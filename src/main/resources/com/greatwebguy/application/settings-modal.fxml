@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="499.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="499.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
    <children>
       <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="499.0" styleClass="toolbar" text="Settings" textAlignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
-      <AnchorPane prefHeight="64.0" prefWidth="499.0">
+      <AnchorPane prefHeight="244.0" prefWidth="499.0" styleClass="settings-main">
          <children>
-            <TextField alignment="CENTER" editable="false" layoutX="191.0" layoutY="19.0" prefHeight="27.0" prefWidth="35.0" />
-            <Label layoutX="146.0" layoutY="19.0" prefHeight="27.0" prefWidth="45.0" text="Time" />
+            <TextField fx:id="timeInput" alignment="CENTER" editable="false" layoutX="59.0" layoutY="14.0" prefHeight="27.0" prefWidth="35.0">
+               <cursor>
+                  <Cursor fx:constant="DISAPPEAR" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-label" text="Time" />
+            <Slider fx:id="timeSlider" blockIncrement="1.0" layoutX="174.0" layoutY="20.0" max="20.0" min="1.0" prefHeight="16.0" prefWidth="183.0">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+            </Slider>
+            <Label layoutX="100.0" layoutY="14.0" prefHeight="27.0" prefWidth="68.0" styleClass="settings-label" text="minutes" />
          </children>
       </AnchorPane>
    </children>

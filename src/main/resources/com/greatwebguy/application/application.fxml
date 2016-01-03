@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.media.*?>
 <?import javafx.scene.effect.*?>
@@ -30,11 +31,17 @@
                 		<graphic>
       			        <Glyph fontFamily="FontAwesome" icon="GEAR" styleClass="toolbar-button" />
       			    </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                 	</Button>
                   <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
                  		<graphic>
       			        <Glyph fontFamily="FontAwesome" icon="STOP" styleClass="toolbar-button" />
       			    </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                 	</Button>
               </items>
             </ToolBar>
@@ -50,6 +57,9 @@
                 </font>
               </Label>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
       </children>
     </AnchorPane>

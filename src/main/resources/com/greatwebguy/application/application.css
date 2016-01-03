@@ -10,3 +10,17 @@
     -fx-text-fill: #FFFFFF;
 }
 
+.settings-main {
+	-fx-background-color: gray;
+}
+
+.settings-label {
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 15px;
+}
+
+.save-button {
+	-fx-base:green;
+	-fx-text-fill: #FFF;
+	-fx-font-size: 20px;
+}
