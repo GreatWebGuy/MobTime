@@ -35,7 +35,7 @@
                </cursor>
             </Button>
             <Button fx:id="removeUser" layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove" />
-            <Button layoutX="416.0" layoutY="123.0" mnemonicParsing="false" styleClass="next-button" text="Next" />
+            <Button fx:id="nextUser" layoutX="416.0" layoutY="123.0" mnemonicParsing="false" styleClass="next-button" text="Next" />
          </children>
       </AnchorPane>
    </children>
