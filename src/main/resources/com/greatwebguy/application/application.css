@@ -36,3 +36,8 @@
 	-fx-text-fill: #FFF;
 	-fx-font-size: 15px;
 }
+
+.turn-label {
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 20px;
+}

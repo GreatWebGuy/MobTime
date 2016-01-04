@@ -91,7 +91,10 @@ public class SettingsController implements Initializable {
 		nextUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-
+				int selectedIdx = userList.getSelectionModel().getSelectedIndex();
+				if (selectedIdx != -1) {
+					Settings.instance().setCurrentUser(selectedIdx);
+				}
 			}
 		});
 
@@ -101,6 +104,7 @@ public class SettingsController implements Initializable {
 		if (StringUtils.isNotBlank(userInput.getText())) {
 			Settings.instance().users.add(new People(userInput.getText()));
 			userInput.clear();
+			Settings.instance().displayUserMessage();
 		}
 	}
 

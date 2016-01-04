@@ -43,6 +43,9 @@ public class TimeController implements Initializable {
     @FXML // fx:id="timerLabel"
     private Label timerLabel;
     
+    @FXML // fx:id="turnLabel"
+    private Label turnLabel;   
+    
     
 
     @Override // This method is called by the FXMLLoader when initialization is complete
@@ -51,8 +54,11 @@ public class TimeController implements Initializable {
         assert stopButton != null : "fx:id=\"stopButton\" was not injected: check your FXML file 'application.fxml'.";
         assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'application.fxml'.";
         assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
+        assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
         
         timerLabel.textProperty().bind(timeMinutes);
+        turnLabel.textProperty().bind(Settings.instance().userMessage);
+        displayUserMessage();
         	
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -119,7 +125,15 @@ public class TimeController implements Initializable {
 		});
     }
     
-    private void showRotate() {
+    private void displayUserMessage() {
+    	int currentUser = Settings.instance().getCurrentUser();
+    	if(currentUser > 0) {
+    		String name = Settings.instance().users.get(currentUser).getName();
+    		Settings.instance().userMessage = new SimpleStringProperty("Mobber " + name +"'s Turn");
+    	}
+	}
+
+	private void showRotate() {
     	if(timeline != null) {
     		timeline.stop();
     	}
@@ -130,6 +144,7 @@ public class TimeController implements Initializable {
     	MediaPlayer mediaPlayer = new MediaPlayer(doorBell);
     	mediaPlayer.play();
     	Stage window = (Stage)timerLabel.getScene().getWindow();
+    	Settings.instance().incrementCurrentUser();
         window.toFront();
         window.requestFocus();
     	

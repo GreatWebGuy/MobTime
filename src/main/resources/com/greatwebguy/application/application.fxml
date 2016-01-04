@@ -61,6 +61,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label fx:id="turnLabel" layoutX="175.0" layoutY="402.0" prefHeight="38.0" prefWidth="488.0" styleClass="turn-label" />
       </children>
     </AnchorPane>
   </children>
