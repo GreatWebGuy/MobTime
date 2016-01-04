@@ -58,7 +58,7 @@ public class TimeController implements Initializable {
         
         timerLabel.textProperty().bind(timeMinutes);
         turnLabel.textProperty().bind(Settings.instance().userMessage);
-        displayUserMessage();
+        Settings.instance().displayUserMessage();
         	
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -80,6 +80,7 @@ public class TimeController implements Initializable {
 
 					}));
 					timeline.playFromStart();
+					Settings.instance().displayUserMessage();
 					startButton.setStyle("-fx-background-color:#71B284");
 					hideWindow();
 					
@@ -125,13 +126,6 @@ public class TimeController implements Initializable {
 		});
     }
     
-    private void displayUserMessage() {
-    	int currentUser = Settings.instance().getCurrentUser();
-    	if(currentUser > 0) {
-    		String name = Settings.instance().users.get(currentUser).getName();
-    		Settings.instance().userMessage = new SimpleStringProperty("Mobber " + name +"'s Turn");
-    	}
-	}
 
 	private void showRotate() {
     	if(timeline != null) {
