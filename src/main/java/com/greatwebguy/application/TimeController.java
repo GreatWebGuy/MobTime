@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Modality;
@@ -59,6 +60,7 @@ public class TimeController implements Initializable {
         timerLabel.textProperty().bind(timeMinutes);
         turnLabel.textProperty().bind(Settings.instance().userMessage);
         Settings.instance().displayUserMessage();
+       
         	
         startButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -128,15 +130,14 @@ public class TimeController implements Initializable {
     
 
 	private void showRotate() {
+		 URL doorBellWav = getClass().getResource("door-bell.wav");
+	     AudioClip doorBellSound = new AudioClip(doorBellWav.toString());
+	     doorBellSound.play();
     	if(timeline != null) {
     		timeline.stop();
     	}
     	timeMinutes.set("Rotate");
     	startButton.setStyle("-fx-background-color:#FF0000");
-    	URL resource = getClass().getResource("door-bell.wav");
-    	Media doorBell = new Media(resource.toString());
-    	MediaPlayer mediaPlayer = new MediaPlayer(doorBell);
-    	mediaPlayer.play();
     	Stage window = (Stage)timerLabel.getScene().getWindow();
     	Settings.instance().incrementCurrentUser();
         window.toFront();
