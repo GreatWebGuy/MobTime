@@ -19,4 +19,8 @@ public class People {
 	public boolean isEnabled() {
 		return enabled;
 	}
+	
+	public String toString() {
+		return getName();
+	}
 }

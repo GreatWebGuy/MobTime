@@ -22,5 +22,17 @@
 .save-button {
 	-fx-base:green;
 	-fx-text-fill: #FFF;
-	-fx-font-size: 20px;
+	-fx-font-size: 15px;
+}
+
+.remove-button {
+	-fx-base:red;
+	-fx-text-fill: #FFF;
+	-fx-font-size: 15px;
+}
+
+.next-button {
+	-fx-base:green;
+	-fx-text-fill: #FFF;
+	-fx-font-size: 15px;
 }

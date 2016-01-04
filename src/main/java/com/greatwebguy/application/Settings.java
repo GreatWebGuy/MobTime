@@ -1,17 +1,17 @@
 package com.greatwebguy.application;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Settings {
 	private static Settings settings = new Settings();
 	private int DEFAULT_START = 7;
 	private int startTime = DEFAULT_START;
 	private LocalTime time;
-	private List<People> people = new ArrayList<People>();
+	protected ObservableList<People> users = FXCollections.observableArrayList();
 	
 	
 	private Settings() {
@@ -45,6 +45,5 @@ public class Settings {
 	public int getTimeInSeconds() {
 		return new SimpleIntegerProperty(startTime * 60).get() + 1;
 	}
-
 	
 }

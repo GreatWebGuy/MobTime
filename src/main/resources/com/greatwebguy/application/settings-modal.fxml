@@ -8,14 +8,9 @@
 <?import javafx.scene.layout.*?>
 
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="499.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="513.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
    <children>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="499.0" styleClass="toolbar" text="Settings" textAlignment="CENTER">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <AnchorPane prefHeight="244.0" prefWidth="499.0" styleClass="settings-main">
+      <AnchorPane prefHeight="274.0" prefWidth="515.0" styleClass="settings-main">
          <children>
             <TextField fx:id="timeInput" alignment="CENTER" editable="false" layoutX="59.0" layoutY="14.0" prefHeight="27.0" prefWidth="35.0">
                <cursor>
@@ -32,6 +27,15 @@
                </cursor>
             </Slider>
             <Label layoutX="100.0" layoutY="14.0" prefHeight="27.0" prefWidth="68.0" styleClass="settings-label" text="minutes" />
+            <ListView fx:id="userList" layoutX="16.0" layoutY="86.0" prefHeight="151.0" prefWidth="388.0" />
+            <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add Mobber" />
+            <Button fx:id="addUser" layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="removeUser" layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove" />
+            <Button layoutX="416.0" layoutY="123.0" mnemonicParsing="false" styleClass="next-button" text="Next" />
          </children>
       </AnchorPane>
    </children>
