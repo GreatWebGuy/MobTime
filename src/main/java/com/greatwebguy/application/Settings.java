@@ -69,7 +69,7 @@ public class Settings {
     	int index = getCurrentUser();
     	if(index > -1) {
     		String name = users.get(index).getName();
-    		userMessage.set("Mobber " + name +"'s Turn");
+    		userMessage.set(name +"'s Turn");
     	} else {
     		userMessage.set("");
     	}
