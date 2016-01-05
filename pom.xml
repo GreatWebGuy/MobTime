@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.greatwebguy.MobTime</groupId>
   <artifactId>MobTime</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0</version>
   <organization>
   	<name>GreatWebGuy</name>
   </organization>
@@ -22,7 +22,9 @@
       	<version>8.2.0</version>
       	<configuration>
       		<vendor>GreatWebGuy</vendor>
+      		<identifier>MobTime</identifier>
       		<mainClass>com.greatwebguy.application.MobTime</mainClass>
+      		<appName>MobTime</appName>
       		<nativeInstallers />
       	</configuration>
       </plugin>
