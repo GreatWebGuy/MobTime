@@ -139,19 +139,20 @@ public class TimeController implements Initializable {
 		Settings.instance().incrementCurrentUser();
 		window.toFront();
 		window.requestFocus();
-		nag = new Timeline(3,
-				new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
-					@Override
-					public void handle(ActionEvent actionEvent) {
-						if (timeMinutes.getValue().equals("Rotate")) {
-							window.toFront();
-							window.requestFocus();
-							doorBellSound.play();
-						} else {
-							nag.stop();
-						}
-					}
-				}));
+		nag = new Timeline();
+		nag.setCycleCount(Timeline.INDEFINITE);
+		nag.getKeyFrames().add(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent actionEvent) {
+				if (timeMinutes.getValue().equals("Rotate")) {
+					window.toFront();
+					window.requestFocus();
+					doorBellSound.play();
+				} else {
+					nag.stop();
+				}
+			}
+		}));
 		nag.playFromStart();
 
 	}
