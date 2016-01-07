@@ -20,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -52,6 +53,9 @@ public class TimeController implements Initializable {
 	@FXML // fx:id="turnLabel"
 	private Label turnLabel;
 
+	@FXML
+	private AnchorPane bottomPane;
+	
 	@Override // This method is called by the FXMLLoader when initialization is
 				// complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -62,6 +66,7 @@ public class TimeController implements Initializable {
 		assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
+		assert bottomPane != null : "fx:id=\"bottomPane\" was not injected: check your FXML file 'application.fxml'.";
 
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
@@ -89,7 +94,7 @@ public class TimeController implements Initializable {
 					}));
 					timeline.playFromStart();
 					Settings.instance().displayUserMessage();
-					startButton.setStyle("-fx-background-color:#71B284");
+					bottomPane.setStyle("-fx-background-color:#71B284");
 					hideWindow();
 
 				} else {
@@ -156,7 +161,7 @@ public class TimeController implements Initializable {
 			timeline.stop();
 		}
 		timeMinutes.set("Rotate");
-		startButton.setStyle("-fx-background-color:#FF0000");
+		bottomPane.setStyle("-fx-background-color:#FF0000");
 		Stage window = (Stage) timerLabel.getScene().getWindow();
 		Settings.instance().incrementCurrentUser();
 		window.toFront();
@@ -185,7 +190,8 @@ public class TimeController implements Initializable {
 		}
 		timeMinutes.set("Start");
 		Settings.instance().initializeTime();
-		startButton.setStyle("-fx-background-color:#333333");
+		bottomPane.setStyle("-fx-background-color:#333333");
+		
 	}
 
 	private void hideWindow() {

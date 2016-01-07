@@ -63,10 +63,10 @@
             </ToolBar>
          </children>
       </AnchorPane>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="bottomPane" maxHeight="-1.0" maxWidth="-1.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="turnLabel" alignment="CENTER" layoutX="175.0" layoutY="402.0" prefHeight="38.0" prefWidth="488.0" styleClass="turn-label" />
-        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="132.0" layoutY="136.0" lineSpacing="2.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false">
+            <Label fx:id="turnLabel" alignment="CENTER" layoutX="-1.0" layoutY="402.0" prefHeight="50.0" prefWidth="826.0" styleClass="turn-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutY="136.0" lineSpacing="2.0" prefHeight="219.0" prefWidth="826.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
           <font>
             <Font name="Monospaced Regular" size="187.0" />
           </font>
