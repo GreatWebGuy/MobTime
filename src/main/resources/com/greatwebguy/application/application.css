@@ -41,3 +41,7 @@
 	-fx-text-fill: #FFFFFF;
 	-fx-font-size: 40px;
 }
+
+.main-pane {
+	-fx-background-color: #333333;
+}

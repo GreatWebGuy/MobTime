@@ -38,6 +38,12 @@ public class TimeController implements Initializable {
 	private Button stopButton;
 
 	@FXML
+	private Button pauseButton;
+
+	@FXML
+	private Button skipButton;
+
+	@FXML
 	private Button settingsButton;
 
 	@FXML // fx:id="timerLabel"
@@ -51,6 +57,8 @@ public class TimeController implements Initializable {
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
 		assert startButton != null : "fx:id=\"startButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert stopButton != null : "fx:id=\"stopButton\" was not injected: check your FXML file 'application.fxml'.";
+		assert pauseButton != null : "fx:id=\"pauseButton\" was not injected: check your FXML file 'application.fxml'.";
+		assert skipButton != null : "fx:id=\"skipButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
@@ -86,9 +94,6 @@ public class TimeController implements Initializable {
 
 				} else {
 					switch (timeline.getStatus()) {
-					case RUNNING:
-						timeline.pause();
-						break;
 					case PAUSED:
 						timeline.play();
 						hideWindow();
@@ -104,6 +109,23 @@ public class TimeController implements Initializable {
 		stopButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				resetStartState();
+			}
+		});
+
+		pauseButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {
+					timeline.pause();
+				}
+			}
+		});
+
+		skipButton.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				Settings.instance().incrementCurrentUser();
 				resetStartState();
 			}
 		});
@@ -141,7 +163,7 @@ public class TimeController implements Initializable {
 		window.requestFocus();
 		nag = new Timeline();
 		nag.setCycleCount(Timeline.INDEFINITE);
-		nag.getKeyFrames().add(new KeyFrame(Duration.seconds(10), new EventHandler<ActionEvent>() {
+		nag.getKeyFrames().add(new KeyFrame(Duration.seconds(15), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				if (timeMinutes.getValue().equals("Rotate")) {
@@ -170,8 +192,10 @@ public class TimeController implements Initializable {
 		Timeline hide = new Timeline(1, new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
-				Stage window = (Stage) timerLabel.getScene().getWindow();
-				window.toBack();
+				if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {
+					Stage window = (Stage) timerLabel.getScene().getWindow();
+					window.toBack();
+				}
 			}
 		}));
 		hide.playFromStart();

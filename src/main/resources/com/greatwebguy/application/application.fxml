@@ -27,7 +27,7 @@
             </Label>
             <ToolBar nodeOrientation="RIGHT_TO_LEFT" styleClass="toolbar" AnchorPane.rightAnchor="0.0">
               <items>
-                	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
+                	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Settings" textFill="WHITE">
                 		<graphic>
       			        <Glyph fontFamily="FontAwesome" icon="GEAR" styleClass="toolbar-button" />
       			    </graphic>
@@ -35,7 +35,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                 	</Button>
-                  <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" textFill="WHITE">
+                  <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Stop" textFill="WHITE">
                  		<graphic>
       			        <Glyph fontFamily="FontAwesome" icon="STOP" styleClass="toolbar-button" />
       			    </graphic>
@@ -43,25 +43,39 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                 	</Button>
+                  <Button fx:id="skipButton" contentDisplay="GRAPHIC_ONLY" layoutX="32.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Skip" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <Glyph fontFamily="FontAwesome" icon="FORWARD" styleClass="toolbar-button" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="pauseButton" contentDisplay="GRAPHIC_ONLY" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Pause" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <graphic>
+                        <Glyph fontFamily="FontAwesome" icon="PAUSE" styleClass="toolbar-button" />
+                     </graphic>
+                  </Button>
               </items>
             </ToolBar>
          </children>
       </AnchorPane>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
       <children>
-            <Button fx:id="startButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" snapToPixel="false" style="-fx-background-color: #333333;" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <graphic>
-              <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" lineSpacing="2.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false">
-                <font>
-                  <Font name="Monospaced Regular" size="187.0" />
-                </font>
-              </Label>
-               </graphic>
+            <Label fx:id="turnLabel" alignment="CENTER" layoutX="175.0" layoutY="402.0" prefHeight="38.0" prefWidth="488.0" styleClass="turn-label" />
+        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutX="132.0" layoutY="136.0" lineSpacing="2.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false">
+          <font>
+            <Font name="Monospaced Regular" size="187.0" />
+          </font>
+        </Label>
+            <Button fx:id="startButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" opacity="0.0" snapToPixel="false" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="turnLabel" alignment="CENTER" layoutX="175.0" layoutY="402.0" prefHeight="38.0" prefWidth="488.0" styleClass="turn-label" />
       </children>
     </AnchorPane>
   </children>
