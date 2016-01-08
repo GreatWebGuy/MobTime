@@ -1,10 +1,10 @@
 /bin/
 /target/
-
+Thumbs.db
 .classpath
 
 .project
 
-.settings/org.eclipse.jdt.core.prefs
+.settings/
 
-.settings/org.eclipse.m2e.core.prefs
+
