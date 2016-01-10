@@ -195,7 +195,7 @@ public class TimeController implements Initializable {
 	}
 
 	private void hideWindow() {
-		Timeline hide = new Timeline(1, new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
+		Timeline hide = new Timeline(1, new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {

@@ -18,8 +18,13 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class SettingsController implements Initializable {
+	@FXML // fx:id="settingsModal"
+	private VBox settingsModal;
+	
 	@FXML // fx:id="timeSlider"
 	private Slider timeSlider;
 
@@ -43,6 +48,7 @@ public class SettingsController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		assert settingsModal != null : "fx:id=\"settingsModal\" was not injected: check your FXML file 'application.fxml'.";
 		assert timeSlider != null : "fx:id=\"timeSlider\" was not injected: check your FXML file 'application.fxml'.";
 		assert timeSettings != null : "fx:id=\"timeInput\" was not injected: check your FXML file 'application.fxml'.";
 		assert addUser != null : "fx:id=\"addUser\" was not injected: check your FXML file 'application.fxml'.";
@@ -51,7 +57,8 @@ public class SettingsController implements Initializable {
 
 		timeSettings.setText(Settings.instance().getStartTime() + "");
 		timeSlider.setValue(Settings.instance().getStartTime());
-		timeSlider.requestFocus();
+		addUser.requestFocus();
+		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
@@ -70,6 +77,18 @@ public class SettingsController implements Initializable {
 					addUser();
 				}
 			}
+		});
+		
+		settingsModal.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if (event.getCode() == KeyCode.ESCAPE) {
+					closeWindow();
+				}
+				
+			}
+
+			
 		});
 
 		addUser.setOnAction(new EventHandler<ActionEvent>() {
@@ -95,6 +114,7 @@ public class SettingsController implements Initializable {
 				int selectedIdx = userList.getSelectionModel().getSelectedIndex();
 				if (selectedIdx != -1) {
 					Settings.instance().setCurrentUser(selectedIdx);
+					closeWindow();
 				}
 			}
 		});
@@ -109,4 +129,8 @@ public class SettingsController implements Initializable {
 		}
 	}
 
+	private void closeWindow() {
+		Stage window = (Stage) settingsModal.getScene().getWindow();
+		window.close();
+	}
 }
