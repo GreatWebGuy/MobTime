@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -23,7 +24,7 @@ public class SettingsController implements Initializable {
 	private Slider timeSlider;
 
 	@FXML // fx:id="timeInput"
-	private TextField timeInput;
+	private Label timeSettings;
 
 	@FXML // fx:id="userInput"
 	private TextField userInput;
@@ -43,19 +44,19 @@ public class SettingsController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		assert timeSlider != null : "fx:id=\"timeSlider\" was not injected: check your FXML file 'application.fxml'.";
-		assert timeInput != null : "fx:id=\"timeInput\" was not injected: check your FXML file 'application.fxml'.";
+		assert timeSettings != null : "fx:id=\"timeInput\" was not injected: check your FXML file 'application.fxml'.";
 		assert addUser != null : "fx:id=\"addUser\" was not injected: check your FXML file 'application.fxml'.";
 		assert removeUser != null : "fx:id=\"removeUser\" was not injected: check your FXML file 'application.fxml'.";
 		assert nextUser != null : "fx:id=\"nextUser\" was not injected: check your FXML file 'application.fxml'.";
 
-		timeInput.setText(Settings.instance().getStartTime() + "");
+		timeSettings.setText(Settings.instance().getStartTime() + "");
 		timeSlider.setValue(Settings.instance().getStartTime());
 		timeSlider.requestFocus();
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
 				int value = Math.round(newValue.intValue());
-				timeInput.setText(value + "");
+				timeSettings.setText(value + "");
 				Settings.instance().setStartTime(value);
 			}
 		});

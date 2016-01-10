@@ -19,6 +19,12 @@
 	-fx-font-size: 15px;
 }
 
+.settings-time {
+	-fx-text-fill: #000000;
+	-fx-font-size: 15px;
+	-fx-background-color: #FFFFFF;
+}
+
 .save-button {
 	-fx-base:green;
 	-fx-text-fill: #FFF;
