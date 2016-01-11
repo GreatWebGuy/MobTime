@@ -56,13 +56,17 @@ public class Settings {
 	}
 	
 	public int getCurrentUser() {
-		return users.size() > 0 && currentUser <= users.size()?currentUser:-1;
+		return users.size() > 0 ? currentUser:-1;
 	}
 	
 	public void incrementCurrentUser() {
-		int potentialUser = currentUser+1;
-		currentUser = potentialUser >= users.size()?0:potentialUser;
-		displayUserMessage();
+		int potentialUser = getCurrentUser()+1;
+		if(potentialUser == 0) {
+			displayUserMessage();
+		} else {
+			currentUser = potentialUser >= users.size()?0:potentialUser;
+			displayUserMessage();
+		}
 	}
 	
     public void displayUserMessage() {

@@ -13,7 +13,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.glyphfont.*?>
 
-<VBox prefHeight="597.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
+<VBox prefHeight="597.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@application.css"  fx:controller="com.greatwebguy.application.TimeController">
   <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="toolbar">
          <children>
@@ -27,15 +27,15 @@
             </Label>
             <ToolBar nodeOrientation="RIGHT_TO_LEFT" styleClass="toolbar" AnchorPane.rightAnchor="0.0">
               <items>
-                	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Settings" textFill="WHITE">
+                	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" text="Settings" textFill="WHITE">
                 		<graphic>
       			        <Glyph fontFamily="FontAwesome" icon="GEAR" styleClass="toolbar-button" />
-      			    </graphic>
+      			   		 </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                 	</Button>
-                  <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Stop" textFill="WHITE">
+                  <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" text="Stop" textFill="WHITE">
                  		<graphic>
       			        <Glyph fontFamily="FontAwesome" icon="STOP" styleClass="toolbar-button" />
       			    </graphic>
@@ -43,7 +43,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                 	</Button>
-                  <Button fx:id="skipButton" contentDisplay="GRAPHIC_ONLY" layoutX="32.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Skip" textFill="WHITE">
+                  <Button fx:id="skipButton" contentDisplay="GRAPHIC_ONLY" layoutX="32.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" text="Skip" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -51,7 +51,7 @@
                         <Glyph fontFamily="FontAwesome" icon="FORWARD" styleClass="toolbar-button" />
                      </graphic>
                   </Button>
-                  <Button fx:id="pauseButton" contentDisplay="GRAPHIC_ONLY" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" stylesheets="@application.css" text="Pause" textFill="WHITE">
+                  <Button fx:id="pauseButton" contentDisplay="GRAPHIC_ONLY" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" text="Pause" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

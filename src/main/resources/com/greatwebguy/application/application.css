@@ -4,10 +4,10 @@
  }
  
 .toolbar-button {
-	-fx-background-color: #000000;
-	-fx-color: #FFFFFF;
+	-fx-base: #000000;
 	-fx-graphic-text-gap: 0px;
     -fx-text-fill: #FFFFFF;
+    -fx-focus-color: transparent;
 }
 
 .settings-main {
@@ -52,14 +52,3 @@
 	-fx-background-color: #333333;
 }
 
-.grey {
-	-fx-background-color: #333333;
-}
-
-.red {
-	-fx-background-color: #333333;
-}
-
-.green {
-	-fx-background-color: #333333;
-}

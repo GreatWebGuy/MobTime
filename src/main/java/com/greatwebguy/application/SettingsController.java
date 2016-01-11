@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -57,7 +58,7 @@ public class SettingsController implements Initializable {
 
 		timeSettings.setText(Settings.instance().getStartTime() + "");
 		timeSlider.setValue(Settings.instance().getStartTime());
-		addUser.requestFocus();
+		userInput.selectHome();
 		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
@@ -104,6 +105,12 @@ public class SettingsController implements Initializable {
 				int selectedIdx = userList.getSelectionModel().getSelectedIndex();
 				if (selectedIdx != -1) {
 					userList.getItems().remove(selectedIdx);
+					if(Settings.instance().users.size() == 0) {
+						Settings.instance().setCurrentUser(-1);
+					} else if(Settings.instance().getCurrentUser() == selectedIdx) {
+						Settings.instance().incrementCurrentUser();
+					}
+					
 				}
 			}
 		});
@@ -114,8 +121,8 @@ public class SettingsController implements Initializable {
 				int selectedIdx = userList.getSelectionModel().getSelectedIndex();
 				if (selectedIdx != -1) {
 					Settings.instance().setCurrentUser(selectedIdx);
-					closeWindow();
 				}
+				closeWindow();
 			}
 		});
 
@@ -123,7 +130,11 @@ public class SettingsController implements Initializable {
 
 	private void addUser() {
 		if (StringUtils.isNotBlank(userInput.getText())) {
-			Settings.instance().users.add(new People(userInput.getText()));
+			ObservableList<People> users = Settings.instance().users;
+			if(users.size() == 0) {
+				Settings.instance().setCurrentUser(0);
+			}
+			users.add(new People(userInput.getText()));
 			userInput.clear();
 			Settings.instance().displayUserMessage();
 		}

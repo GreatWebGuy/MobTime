@@ -6,6 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import org.controlsfx.glyphfont.*?>
 
 <VBox fx:id="settingsModal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="513.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
    <children>
@@ -20,13 +21,30 @@
             <Label alignment="CENTER" layoutX="90.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
             <ListView fx:id="userList" layoutX="16.0" layoutY="86.0" prefHeight="151.0" prefWidth="388.0" />
             <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" />
-            <Button fx:id="addUser" layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
+            <Button fx:id="addUser" contentDisplay="GRAPHIC_ONLY"  layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
+            	<graphic>
+      			    <Glyph fontFamily="FontAwesome" icon="PLUS" styleClass="settings-button" />
+      			</graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="removeUser" layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove" />
-            <Button fx:id="nextUser" layoutX="416.0" layoutY="123.0" mnemonicParsing="false" styleClass="next-button" text="Next" />
+            <Button fx:id="removeUser" contentDisplay="GRAPHIC_ONLY"  layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove">
+            	<graphic>
+      			    <Glyph fontFamily="FontAwesome" icon="MINUS" styleClass="settings-button" />
+      			</graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="nextUser" contentDisplay="GRAPHIC_ONLY" layoutX="414.0" layoutY="208.0" mnemonicParsing="false" styleClass="next-button" text="Next">
+	   			<graphic>
+	                <Glyph fontFamily="FontAwesome" icon="FORWARD" styleClass="settings-button" />
+	             </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <Label fx:id="timeSettings" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="25.0" styleClass="settings-time" text="1" />
          </children>
       </AnchorPane>
