@@ -20,8 +20,8 @@
             </Slider>
             <Label alignment="CENTER" layoutX="90.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
             <ListView fx:id="userList" layoutX="16.0" layoutY="86.0" prefHeight="151.0" prefWidth="388.0" />
-            <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" />
-            <Button fx:id="addUser" contentDisplay="GRAPHIC_ONLY"  layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
+            <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" styleClass="user-input" />
+            <Button fx:id="addUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
             	<graphic>
       			    <Glyph fontFamily="FontAwesome" icon="PLUS" styleClass="settings-button" />
       			</graphic>
@@ -29,7 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="removeUser" contentDisplay="GRAPHIC_ONLY"  layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove">
+            <Button fx:id="removeUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove">
             	<graphic>
       			    <Glyph fontFamily="FontAwesome" icon="MINUS" styleClass="settings-button" />
       			</graphic>

@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.StringUtils;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -58,7 +59,13 @@ public class SettingsController implements Initializable {
 
 		timeSettings.setText(Settings.instance().getStartTime() + "");
 		timeSlider.setValue(Settings.instance().getStartTime());
-		userInput.selectHome();
+		Platform.runLater(new Runnable() {
+		     @Override
+		     public void run() {
+		    	 userInput.requestFocus();
+		     }
+		});
+		
 		
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
