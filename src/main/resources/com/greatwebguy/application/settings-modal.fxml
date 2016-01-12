@@ -37,7 +37,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="nextUser" contentDisplay="GRAPHIC_ONLY" layoutX="414.0" layoutY="208.0" mnemonicParsing="false" styleClass="next-button" text="Next">
+            <Button fx:id="nextUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="208.0" mnemonicParsing="false" styleClass="next-button" text="Next">
 	   			<graphic>
 	                <Glyph fontFamily="FontAwesome" icon="FORWARD" styleClass="settings-button" />
 	             </graphic>
@@ -46,6 +46,22 @@
                </cursor>
             </Button>
             <Label fx:id="timeSettings" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="25.0" styleClass="settings-time" text="1" />
+            <Button fx:id="upUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="120.0" mnemonicParsing="false" text="Up">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Glyph fontFamily="FontAwesome" icon="ARROW_UP" styleClass="settings-button" />
+               </graphic>
+            </Button>
+            <Button fx:id="downUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="155.0" mnemonicParsing="false" text="Down">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <Glyph fontFamily="FontAwesome" icon="ARROW_DOWN" styleClass="settings-button" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

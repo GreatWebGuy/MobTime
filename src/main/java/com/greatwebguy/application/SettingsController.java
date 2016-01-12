@@ -1,6 +1,7 @@
 package com.greatwebguy.application;
 
 import java.net.URL;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +45,12 @@ public class SettingsController implements Initializable {
 
 	@FXML // fx:id="nextUser"
 	private Button nextUser;
+	
+	@FXML // fx:id="upUser"
+	private Button upUser;
+	
+	@FXML // fx:id="downUser"
+	private Button downUser;
 
 	@FXML // fx:id="userList"
 	private ListView<People> userList;
@@ -56,6 +63,8 @@ public class SettingsController implements Initializable {
 		assert addUser != null : "fx:id=\"addUser\" was not injected: check your FXML file 'application.fxml'.";
 		assert removeUser != null : "fx:id=\"removeUser\" was not injected: check your FXML file 'application.fxml'.";
 		assert nextUser != null : "fx:id=\"nextUser\" was not injected: check your FXML file 'application.fxml'.";
+		assert upUser != null : "fx:id=\"upUser\" was not injected: check your FXML file 'application.fxml'.";
+		assert downUser != null : "fx:id=\"downUser\" was not injected: check your FXML file 'application.fxml'.";
 
 		timeSettings.setText(Settings.instance().getStartTime() + "");
 		timeSlider.setValue(Settings.instance().getStartTime());
@@ -105,6 +114,21 @@ public class SettingsController implements Initializable {
 				addUser();
 			}
 		});
+		
+		upUser.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				upUser();
+			}
+
+		});
+		
+		downUser.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				downUser();
+			}
+		});
 
 		removeUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
@@ -147,6 +171,19 @@ public class SettingsController implements Initializable {
 		}
 	}
 
+	private void upUser() {
+		ObservableList<People> users = Settings.instance().users;
+		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
+		Collections.rotate(users.subList(selectedIdx, selectedIdx -1), -1);
+		
+	}
+	
+	private void downUser() {
+		ObservableList<People> users = Settings.instance().users;
+		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
+		Collections.rotate(users.subList(selectedIdx, selectedIdx +1), +1);
+	}
+	
 	private void closeWindow() {
 		Stage window = (Stage) settingsModal.getScene().getWindow();
 		window.close();
