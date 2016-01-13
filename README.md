@@ -9,8 +9,8 @@ Requires
 * JDK 1.8
 * JavaFX SDK
 
-To build a jar, run: mvn jfx:jar
-To build native on Mac on Windows, run: mvn jfx:native
+- To build a jar, run: mvn jfx:jar
+- To build native on Mac on Windows, run: mvn jfx:native
 
 ### Use
 Download the MacOSX or Windows installer, install and run
