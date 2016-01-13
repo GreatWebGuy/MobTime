@@ -8,6 +8,7 @@ For Timing Mob Sessions
 - Maven 3.x
 - JDK 1.8
 - JavaFX SDK
+
 #### Package generation
 - To build a jar, run: mvn jfx:jar
 - To build native on Mac on Windows, run: mvn jfx:native
