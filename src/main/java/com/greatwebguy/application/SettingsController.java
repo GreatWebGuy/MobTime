@@ -118,7 +118,7 @@ public class SettingsController implements Initializable {
 		upUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				upUser();
+				moveUser("up");
 			}
 
 		});
@@ -126,7 +126,7 @@ public class SettingsController implements Initializable {
 		downUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				downUser();
+				moveUser("down");
 			}
 		});
 
@@ -171,17 +171,33 @@ public class SettingsController implements Initializable {
 		}
 	}
 
-	private void upUser() {
+	private void moveUser(String direction) {
 		ObservableList<People> users = Settings.instance().users;
 		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
-		Collections.rotate(users.subList(selectedIdx, selectedIdx -1), -1);
+		int size = users.size();
+		int newPosition = 0;
+		if(size > 1 && selectedIdx > -1) {
+			if("up".equals(direction)) {
+				newPosition = selectedIdx - 1;
+				if(newPosition < 0) {
+					Collections.rotate(users, -1);
+					newPosition = size - 1;
+				} else {				
+					Collections.swap(users, selectedIdx, newPosition);
+				}
+			} else {
+				newPosition = selectedIdx + 1;
+				if(newPosition > size - 1) {
+					Collections.rotate(users, +1);
+					newPosition = 0;
+				} else {
+					Collections.swap(users, selectedIdx, newPosition);
+				}
+			}
+			userList.setItems(users);
+			userList.getSelectionModel().select(newPosition);
+		}
 		
-	}
-	
-	private void downUser() {
-		ObservableList<People> users = Settings.instance().users;
-		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
-		Collections.rotate(users.subList(selectedIdx, selectedIdx +1), +1);
 	}
 	
 	private void closeWindow() {
