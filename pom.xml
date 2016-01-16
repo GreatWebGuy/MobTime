@@ -25,6 +25,7 @@
       		<identifier>MobTime</identifier>
       		<mainClass>com.greatwebguy.application.MobTime</mainClass>
       		<appName>MobTime</appName>
+      		<nativeReleaseVersion>1.1</nativeReleaseVersion>
       		<nativeInstallers />
       	</configuration>
       </plugin>
