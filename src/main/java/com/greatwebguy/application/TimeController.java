@@ -101,6 +101,7 @@ public class TimeController implements Initializable {
 					switch (timeline.getStatus()) {
 					case PAUSED:
 						timeline.play();
+						bottomPane.setStyle("-fx-background-color:#71B284");
 						hideWindow();
 						break;
 					default:
@@ -121,8 +122,17 @@ public class TimeController implements Initializable {
 		pauseButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
+				boolean paused = false;
 				if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {
 					timeline.pause();
+					paused = true;
+				}
+				if (nag != null && nag.getStatus().equals(Status.RUNNING)) {
+					nag.stop();
+					paused = true;
+				}
+				if(paused) {
+					bottomPane.setStyle("-fx-background-color:#FFBF00");
 				}
 			}
 		});
