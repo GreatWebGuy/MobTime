@@ -15,15 +15,22 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 public class TimeController implements Initializable {
@@ -96,7 +103,7 @@ public class TimeController implements Initializable {
 					Settings.instance().displayUserMessage();
 					bottomPane.setStyle("-fx-background-color:#71B284");
 					hideWindow();
-
+					openSmallTimer();
 				} else {
 					switch (timeline.getStatus()) {
 					case PAUSED:
@@ -109,6 +116,7 @@ public class TimeController implements Initializable {
 					}
 				}
 			}
+
 		});
 
 		// Stop and reset the timer
@@ -215,5 +223,30 @@ public class TimeController implements Initializable {
 			}
 		}));
 		hide.playFromStart();
+	}
+	
+	private void openSmallTimer() {
+		int height = 25;
+		int width = 50;
+		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+		Stage stage = new Stage();
+		stage.initStyle(StageStyle.TRANSPARENT);
+		stage.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
+		stage.setY(screenBounds.getMinY() + screenBounds.getHeight() - height);
+		Label timer = new Label();
+		timer.setPrefWidth(width);
+		timer.setPrefHeight(height);
+		timer.textProperty().bind(timeMinutes);
+		timer.setTextAlignment(TextAlignment.CENTER);
+		timer.setAlignment(Pos.CENTER);
+		VBox box = new VBox();
+		box.setAlignment(Pos.CENTER);
+		box.getChildren().add(timer);
+		box.setCenterShape(true);
+		final Scene scene = new Scene(box, width, height);
+		scene.setFill(Color.TRANSPARENT);
+		stage.setScene(scene);
+		stage.setAlwaysOnTop(true);
+		stage.show();
 	}
 }
