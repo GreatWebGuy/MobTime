@@ -181,6 +181,7 @@ public class TimeController implements Initializable {
 		if (timeline != null) {
 			timeline.stop();
 		}
+		Settings.instance().incrementCurrentUser();
 		timeMinutes.set("Rotate");
 		paneColor.set("-fx-background-color:#FF0000");
 		showMainWindow();
@@ -213,7 +214,6 @@ public class TimeController implements Initializable {
 
 	private void showMainWindow() {
 		Stage window = (Stage) timerLabel.getScene().getWindow();
-		Settings.instance().incrementCurrentUser();
 		window.toFront();
 		window.requestFocus();
 	}
