@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
@@ -38,6 +39,8 @@ public class TimeController implements Initializable {
 	private Timeline nag;
 
 	private StringProperty timeMinutes = new SimpleStringProperty("Start");
+	private StringProperty paneColor = new SimpleStringProperty("-fx-background-color:#333333");
+	private Stage miniTimer;
 
 	@FXML // fx:id="startButton"
 	private Button startButton; // Value injected by FXMLLoader
@@ -62,7 +65,7 @@ public class TimeController implements Initializable {
 
 	@FXML
 	private AnchorPane bottomPane;
-	
+
 	@Override // This method is called by the FXMLLoader when initialization is
 				// complete
 	public void initialize(URL fxmlFileLocation, ResourceBundle resources) {
@@ -77,6 +80,7 @@ public class TimeController implements Initializable {
 
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
+		bottomPane.styleProperty().bind(paneColor);
 		Settings.instance().displayUserMessage();
 
 		startButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -101,14 +105,14 @@ public class TimeController implements Initializable {
 					}));
 					timeline.playFromStart();
 					Settings.instance().displayUserMessage();
-					bottomPane.setStyle("-fx-background-color:#71B284");
+					paneColor.set("-fx-background-color:#71B284");
 					hideWindow();
-					openSmallTimer();
+					openMiniTimer();
 				} else {
 					switch (timeline.getStatus()) {
 					case PAUSED:
 						timeline.play();
-						bottomPane.setStyle("-fx-background-color:#71B284");
+						paneColor.set("-fx-background-color:#71B284");
 						hideWindow();
 						break;
 					default:
@@ -139,8 +143,8 @@ public class TimeController implements Initializable {
 					nag.stop();
 					paused = true;
 				}
-				if(paused) {
-					bottomPane.setStyle("-fx-background-color:#FFBF00");
+				if (paused) {
+					paneColor.set("-fx-background-color:#FFBF00");
 				}
 			}
 		});
@@ -164,7 +168,6 @@ public class TimeController implements Initializable {
 					stage.initOwner(((Node) event.getSource()).getScene().getWindow());
 					stage.show();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -179,19 +182,15 @@ public class TimeController implements Initializable {
 			timeline.stop();
 		}
 		timeMinutes.set("Rotate");
-		bottomPane.setStyle("-fx-background-color:#FF0000");
-		Stage window = (Stage) timerLabel.getScene().getWindow();
-		Settings.instance().incrementCurrentUser();
-		window.toFront();
-		window.requestFocus();
+		paneColor.set("-fx-background-color:#FF0000");
+		showMainWindow();
 		nag = new Timeline();
 		nag.setCycleCount(Timeline.INDEFINITE);
 		nag.getKeyFrames().add(new KeyFrame(Duration.seconds(15), new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent actionEvent) {
 				if (timeMinutes.getValue().equals("Rotate")) {
-					window.toFront();
-					window.requestFocus();
+					showMainWindow();
 					doorBellSound.play();
 				} else {
 					nag.stop();
@@ -208,8 +207,15 @@ public class TimeController implements Initializable {
 		}
 		timeMinutes.set("Start");
 		Settings.instance().initializeTime();
-		bottomPane.setStyle("-fx-background-color:#333333");
-		
+		paneColor.set("-fx-background-color:#333333");
+
+	}
+
+	private void showMainWindow() {
+		Stage window = (Stage) timerLabel.getScene().getWindow();
+		Settings.instance().incrementCurrentUser();
+		window.toFront();
+		window.requestFocus();
 	}
 
 	private void hideWindow() {
@@ -224,29 +230,40 @@ public class TimeController implements Initializable {
 		}));
 		hide.playFromStart();
 	}
-	
-	private void openSmallTimer() {
-		int height = 25;
-		int width = 50;
-		Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-		Stage stage = new Stage();
-		stage.initStyle(StageStyle.TRANSPARENT);
-		stage.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
-		stage.setY(screenBounds.getMinY() + screenBounds.getHeight() - height);
-		Label timer = new Label();
-		timer.setPrefWidth(width);
-		timer.setPrefHeight(height);
-		timer.textProperty().bind(timeMinutes);
-		timer.setTextAlignment(TextAlignment.CENTER);
-		timer.setAlignment(Pos.CENTER);
-		VBox box = new VBox();
-		box.setAlignment(Pos.CENTER);
-		box.getChildren().add(timer);
-		box.setCenterShape(true);
-		final Scene scene = new Scene(box, width, height);
-		scene.setFill(Color.TRANSPARENT);
-		stage.setScene(scene);
-		stage.setAlwaysOnTop(true);
-		stage.show();
+
+	private void openMiniTimer() {
+		if (miniTimer == null) {
+			int height = 25;
+			int width = 50;
+			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+			miniTimer = new Stage();
+			miniTimer.initStyle(StageStyle.TRANSPARENT);
+			miniTimer.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
+			miniTimer.setY(screenBounds.getMinY() + screenBounds.getHeight() - height);
+			Label timer = new Label();
+			timer.setPrefWidth(width);
+			timer.setPrefHeight(height);
+			timer.textProperty().bind(timeMinutes);
+			timer.setTextAlignment(TextAlignment.CENTER);
+			timer.setAlignment(Pos.CENTER);
+			timer.setStyle("-fx-text-fill:white");
+			VBox box = new VBox();
+			box.setAlignment(Pos.CENTER);
+			box.getChildren().add(timer);
+			box.setCenterShape(true);
+			box.styleProperty().bind(paneColor);
+			final Scene scene = new Scene(box, width, height);
+			scene.setFill(Color.TRANSPARENT);
+			miniTimer.setScene(scene);
+			miniTimer.setAlwaysOnTop(true);
+			miniTimer.show();
+
+			box.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					showMainWindow();
+				}
+			});
+		}
 	}
 }
