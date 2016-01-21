@@ -13,11 +13,11 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.glyphfont.*?>
 
-<VBox prefHeight="597.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@application.css"  fx:controller="com.greatwebguy.application.TimeController">
+<VBox prefHeight="597.0" prefWidth="826.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
   <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="toolbar">
          <children>
-            <Label alignment="CENTER" styleClass="toolbar" text="MobTime" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" styleClass="toolbar" text="MobTime v1.2" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="24.0" />
                </font>
