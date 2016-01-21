@@ -17,7 +17,7 @@
   <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="toolbar">
          <children>
-            <Label alignment="CENTER" styleClass="toolbar" text="MobTime v1.2" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Label alignment="CENTER" styleClass="toolbar" text="MobTime v1.3 (beta)" textFill="WHITE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="24.0" />
                </font>
