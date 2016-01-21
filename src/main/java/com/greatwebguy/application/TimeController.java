@@ -27,6 +27,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Screen;
@@ -233,25 +234,33 @@ public class TimeController implements Initializable {
 
 	private void openMiniTimer() {
 		if (miniTimer == null) {
-			int height = 25;
+			int height = 35;
 			int width = 50;
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			miniTimer = new Stage();
 			miniTimer.initStyle(StageStyle.TRANSPARENT);
 			miniTimer.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
 			miniTimer.setY(screenBounds.getMinY() + screenBounds.getHeight() - height);
+			Label turn = new Label();
+			turn.setPrefWidth(width);
+			turn.setPrefHeight(height - 25);
+			turn.setTextAlignment(TextAlignment.CENTER);
+			turn.setAlignment(Pos.CENTER);
+			turn.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 10px;");
+			turn.textProperty().bind(Settings.instance().userName);
 			Label timer = new Label();
 			timer.setPrefWidth(width);
-			timer.setPrefHeight(height);
+			timer.setPrefHeight(height - 10);
 			timer.textProperty().bind(timeMinutes);
 			timer.setTextAlignment(TextAlignment.CENTER);
 			timer.setAlignment(Pos.CENTER);
-			timer.setStyle("-fx-text-fill:white");
+			timer.setTextFill(Paint.valueOf("white"));
+			timer.styleProperty().bind(paneColor);
 			VBox box = new VBox();
 			box.setAlignment(Pos.CENTER);
+			box.getChildren().add(turn);
 			box.getChildren().add(timer);
 			box.setCenterShape(true);
-			box.styleProperty().bind(paneColor);
 			final Scene scene = new Scene(box, width, height);
 			scene.setFill(Color.TRANSPARENT);
 			miniTimer.setScene(scene);

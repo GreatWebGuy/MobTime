@@ -17,6 +17,7 @@ public class Settings {
 	
 	protected ObservableList<People> users = FXCollections.observableArrayList();
 	protected StringProperty userMessage = new SimpleStringProperty("");
+	protected StringProperty userName = new SimpleStringProperty("MobTime");
 	
 	private Settings() {
 		//
@@ -74,8 +75,10 @@ public class Settings {
     	if(index > -1) {
     		String name = users.get(index).getName();
     		userMessage.set(name +"'s Turn");
+    		userName.set(name);
     	} else {
     		userMessage.set("");
+    		userName.set("MobTime");
     	}
 	}
 	
