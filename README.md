@@ -24,7 +24,7 @@ For Timing Mob Sessions
  * Stop to stop rotate nag alarm or current users turn
  * Settings - Add/Remove users for named rotation and Skip/Reorders users 
 
-(https://github.com/GreatWebGuy/MobTime/blob/gh-pages/images/mobtime-info-graphic.png)
+![Info Graphic Mobtime](https://github.com/GreatWebGuy/MobTime/blob/gh-pages/images/mobtime-info-graphic.png "Info Graphic Mobtime")
 
 
 [http://greatwebguy.github.io/MobTime/](http://greatwebguy.github.io/MobTime/)
