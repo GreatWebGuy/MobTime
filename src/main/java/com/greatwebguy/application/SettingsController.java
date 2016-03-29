@@ -21,6 +21,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -149,12 +150,19 @@ public class SettingsController implements Initializable {
 		nextUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				int selectedIdx = userList.getSelectionModel().getSelectedIndex();
-				if (selectedIdx != -1) {
-					Settings.instance().setCurrentUser(selectedIdx);
-				}
-				closeWindow();
+				selectNewUser();
 			}
+		});
+		
+		userList.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+		    @Override
+		    public void handle(MouseEvent click) {
+
+		        if (click.getClickCount() == 2) {
+		        	selectNewUser();
+		        }
+		    }
 		});
 
 	}
@@ -203,5 +211,13 @@ public class SettingsController implements Initializable {
 	private void closeWindow() {
 		Stage window = (Stage) settingsModal.getScene().getWindow();
 		window.close();
+	}
+
+	private void selectNewUser() {
+		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
+		if (selectedIdx != -1) {
+			Settings.instance().setCurrentUser(selectedIdx);
+		}
+		closeWindow();
 	}
 }
