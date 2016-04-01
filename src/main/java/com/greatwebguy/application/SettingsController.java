@@ -3,6 +3,8 @@ package com.greatwebguy.application;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -211,6 +213,12 @@ public class SettingsController implements Initializable {
 	private void closeWindow() {
 		Stage window = (Stage) settingsModal.getScene().getWindow();
 		window.close();
+		storeUsers();
+	}
+
+	private void storeUsers() {
+	    Preferences prefs = Preferences.userNodeForPackage(MobTime.class);
+	    prefs.put("Users", Settings.instance().users.stream().map(People::getName).collect(Collectors.joining(",")));
 	}
 
 	private void selectNewUser() {

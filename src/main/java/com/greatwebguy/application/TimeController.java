@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
+
+import org.apache.commons.lang3.StringUtils;
 
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
@@ -78,7 +81,8 @@ public class TimeController implements Initializable {
 		assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert bottomPane != null : "fx:id=\"bottomPane\" was not injected: check your FXML file 'application.fxml'.";
-
+		loadUsers();
+		
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
 		bottomPane.styleProperty().bind(paneColor);
@@ -173,6 +177,17 @@ public class TimeController implements Initializable {
 				}
 			}
 		});
+	}
+
+	private void loadUsers() {
+		Preferences prefs = Preferences.userNodeForPackage(MobTime.class);
+	    String users = prefs.get("Users", "");
+	    String[] people = users.split(",");
+	    for (String person : people) {
+	    	if(StringUtils.isNotBlank(person)) {
+	    		Settings.instance().users.add(new People(person));
+	    	}
+		}
 	}
 
 	private void showRotate() {
