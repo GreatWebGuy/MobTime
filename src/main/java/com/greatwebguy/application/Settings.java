@@ -1,6 +1,14 @@
 package com.greatwebguy.application;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.time.LocalTime;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -80,6 +88,36 @@ public class Settings {
     		userMessage.set("");
     		userName.set("MobTime");
     	}
+	}
+    
+	public void storeUsers() {
+		String path = getHomePath();
+		try (PrintWriter out = new PrintWriter(path)) {
+			out.println(Settings.instance().users.stream().map(People::getName).collect(Collectors.joining(",")));
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void loadUsers() {
+		String path = getHomePath();
+		try (BufferedReader brTest = new BufferedReader(new FileReader(path))) {
+			String users = brTest.readLine();
+			String[] people = users.split(",");
+			for (String person : people) {
+				if (StringUtils.isNotBlank(person)) {
+					Settings.instance().users.add(new People(person));
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("No existing users found");
+		}
+	}
+
+	private String getHomePath() {
+		String home = System.getProperty("user.home");
+		String path = home + File.separator + ".mobtime";
+		return path;
 	}
 	
 }

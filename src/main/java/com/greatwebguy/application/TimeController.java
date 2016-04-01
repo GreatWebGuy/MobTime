@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
-
-import org.apache.commons.lang3.StringUtils;
 
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
@@ -36,6 +33,7 @@ import javafx.stage.Modality;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class TimeController implements Initializable {
@@ -81,8 +79,8 @@ public class TimeController implements Initializable {
 		assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert bottomPane != null : "fx:id=\"bottomPane\" was not injected: check your FXML file 'application.fxml'.";
-		loadUsers();
-		
+		Settings.instance().loadUsers();
+
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
 		bottomPane.styleProperty().bind(paneColor);
@@ -172,22 +170,17 @@ public class TimeController implements Initializable {
 					stage.initModality(Modality.WINDOW_MODAL);
 					stage.initOwner(((Node) event.getSource()).getScene().getWindow());
 					stage.show();
+					stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+						@Override
+						public void handle(WindowEvent event) {
+							Settings.instance().storeUsers();
+						}
+					});
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 			}
 		});
-	}
-
-	private void loadUsers() {
-		Preferences prefs = Preferences.userNodeForPackage(MobTime.class);
-	    String users = prefs.get("Users", "");
-	    String[] people = users.split(",");
-	    for (String person : people) {
-	    	if(StringUtils.isNotBlank(person)) {
-	    		Settings.instance().users.add(new People(person));
-	    	}
-		}
 	}
 
 	private void showRotate() {

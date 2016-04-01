@@ -3,8 +3,6 @@ package com.greatwebguy.application;
 import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
-import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -30,7 +28,7 @@ import javafx.stage.Stage;
 public class SettingsController implements Initializable {
 	@FXML // fx:id="settingsModal"
 	private VBox settingsModal;
-	
+
 	@FXML // fx:id="timeSlider"
 	private Slider timeSlider;
 
@@ -48,10 +46,10 @@ public class SettingsController implements Initializable {
 
 	@FXML // fx:id="nextUser"
 	private Button nextUser;
-	
+
 	@FXML // fx:id="upUser"
 	private Button upUser;
-	
+
 	@FXML // fx:id="downUser"
 	private Button downUser;
 
@@ -72,13 +70,12 @@ public class SettingsController implements Initializable {
 		timeSettings.setText(Settings.instance().getStartTime() + "");
 		timeSlider.setValue(Settings.instance().getStartTime());
 		Platform.runLater(new Runnable() {
-		     @Override
-		     public void run() {
-		    	 userInput.requestFocus();
-		     }
+			@Override
+			public void run() {
+				userInput.requestFocus();
+			}
 		});
-		
-		
+
 		timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
@@ -98,17 +95,15 @@ public class SettingsController implements Initializable {
 				}
 			}
 		});
-		
+
 		settingsModal.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if (event.getCode() == KeyCode.ESCAPE) {
 					closeWindow();
 				}
-				
 			}
 
-			
 		});
 
 		addUser.setOnAction(new EventHandler<ActionEvent>() {
@@ -117,7 +112,7 @@ public class SettingsController implements Initializable {
 				addUser();
 			}
 		});
-		
+
 		upUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -125,7 +120,7 @@ public class SettingsController implements Initializable {
 			}
 
 		});
-		
+
 		downUser.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -139,12 +134,12 @@ public class SettingsController implements Initializable {
 				int selectedIdx = userList.getSelectionModel().getSelectedIndex();
 				if (selectedIdx != -1) {
 					userList.getItems().remove(selectedIdx);
-					if(Settings.instance().users.size() == 0) {
+					if (Settings.instance().users.size() == 0) {
 						Settings.instance().setCurrentUser(-1);
-					} else if(Settings.instance().getCurrentUser() == selectedIdx) {
+					} else if (Settings.instance().getCurrentUser() == selectedIdx) {
 						Settings.instance().incrementCurrentUser();
 					}
-					
+
 				}
 			}
 		});
@@ -155,24 +150,23 @@ public class SettingsController implements Initializable {
 				selectNewUser();
 			}
 		});
-		
+
 		userList.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-		    @Override
-		    public void handle(MouseEvent click) {
+			@Override
+			public void handle(MouseEvent click) {
 
-		        if (click.getClickCount() == 2) {
-		        	selectNewUser();
-		        }
-		    }
+				if (click.getClickCount() == 2) {
+					selectNewUser();
+				}
+			}
 		});
-
 	}
 
 	private void addUser() {
 		if (StringUtils.isNotBlank(userInput.getText())) {
 			ObservableList<People> users = Settings.instance().users;
-			if(users.size() == 0) {
+			if (users.size() == 0) {
 				Settings.instance().setCurrentUser(0);
 			}
 			users.add(new People(userInput.getText()));
@@ -186,18 +180,18 @@ public class SettingsController implements Initializable {
 		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
 		int size = users.size();
 		int newPosition = 0;
-		if(size > 1 && selectedIdx > -1) {
-			if("up".equals(direction)) {
+		if (size > 1 && selectedIdx > -1) {
+			if ("up".equals(direction)) {
 				newPosition = selectedIdx - 1;
-				if(newPosition < 0) {
+				if (newPosition < 0) {
 					Collections.rotate(users, -1);
 					newPosition = size - 1;
-				} else {				
+				} else {
 					Collections.swap(users, selectedIdx, newPosition);
 				}
 			} else {
 				newPosition = selectedIdx + 1;
-				if(newPosition > size - 1) {
+				if (newPosition > size - 1) {
 					Collections.rotate(users, +1);
 					newPosition = 0;
 				} else {
@@ -207,19 +201,16 @@ public class SettingsController implements Initializable {
 			userList.setItems(users);
 			userList.getSelectionModel().select(newPosition);
 		}
-		
+
 	}
-	
+
 	private void closeWindow() {
 		Stage window = (Stage) settingsModal.getScene().getWindow();
 		window.close();
-		storeUsers();
+		Settings.instance().storeUsers();
 	}
 
-	private void storeUsers() {
-	    Preferences prefs = Preferences.userNodeForPackage(MobTime.class);
-	    prefs.put("Users", Settings.instance().users.stream().map(People::getName).collect(Collectors.joining(",")));
-	}
+
 
 	private void selectNewUser() {
 		int selectedIdx = userList.getSelectionModel().getSelectedIndex();
