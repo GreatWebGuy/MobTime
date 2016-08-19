@@ -91,7 +91,7 @@ public class Settings {
 	}
     
 	public void storeUsers() {
-		String path = getHomePath();
+		String path = getUserStoragePath();
 		try (PrintWriter out = new PrintWriter(path)) {
 			out.println(Settings.instance().users.stream().map(People::getName).collect(Collectors.joining(",")));
 		} catch (FileNotFoundException e) {
@@ -100,7 +100,7 @@ public class Settings {
 	}
 
 	public void loadUsers() {
-		String path = getHomePath();
+		String path = getUserStoragePath();
 		try (BufferedReader brTest = new BufferedReader(new FileReader(path))) {
 			String users = brTest.readLine();
 			String[] people = users.split(",");
@@ -113,10 +113,37 @@ public class Settings {
 			System.out.println("No existing users found");
 		}
 	}
+	
+	public void storeTime() {
+		String path = getTimeStoragePath();
+		try (PrintWriter out = new PrintWriter(path)) {
+			out.println(Settings.instance().getStartTime());
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void loadTime() {
+		String path = getTimeStoragePath();
+		try (BufferedReader brTime = new BufferedReader(new FileReader(path))) {
+			String time = brTime.readLine();
+			if(StringUtils.isNotBlank(time)) {
+				Settings.instance().setStartTime(Integer.parseInt(time));
+			}
+		} catch (Exception e) {
+			System.out.println("No existing time");
+		}		
+	}
 
-	private String getHomePath() {
+	private String getUserStoragePath() {
 		String home = System.getProperty("user.home");
 		String path = home + File.separator + ".mobtime";
+		return path;
+	}
+	
+	private String getTimeStoragePath() {
+		String home = System.getProperty("user.home");
+		String path = home + File.separator + ".mobtime-time";
 		return path;
 	}
 	

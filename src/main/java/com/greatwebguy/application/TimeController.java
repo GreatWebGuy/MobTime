@@ -15,24 +15,15 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
@@ -40,9 +31,9 @@ public class TimeController implements Initializable {
 	private Timeline timeline;
 	private Timeline nag;
 
-	private StringProperty timeMinutes = new SimpleStringProperty("Start");
-	private StringProperty paneColor = new SimpleStringProperty("-fx-background-color:#333333");
-	private Stage miniTimer;
+	public static StringProperty timeMinutes = new SimpleStringProperty("Start");
+	public static StringProperty paneColor = new SimpleStringProperty("-fx-background-color:#333333");
+
 
 	@FXML // fx:id="startButton"
 	private Button startButton; // Value injected by FXMLLoader
@@ -80,6 +71,7 @@ public class TimeController implements Initializable {
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert bottomPane != null : "fx:id=\"bottomPane\" was not injected: check your FXML file 'application.fxml'.";
 		Settings.instance().loadUsers();
+		Settings.instance().loadTime();
 
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
@@ -110,7 +102,6 @@ public class TimeController implements Initializable {
 					Settings.instance().displayUserMessage();
 					paneColor.set("-fx-background-color:#71B284");
 					hideWindow();
-					openMiniTimer();
 				} else {
 					switch (timeline.getStatus()) {
 					case PAUSED:
@@ -174,6 +165,7 @@ public class TimeController implements Initializable {
 						@Override
 						public void handle(WindowEvent event) {
 							Settings.instance().storeUsers();
+							Settings.instance().storeTime();
 						}
 					});
 				} catch (IOException e) {
@@ -240,47 +232,5 @@ public class TimeController implements Initializable {
 		hide.playFromStart();
 	}
 
-	private void openMiniTimer() {
-		if (miniTimer == null) {
-			int height = 35;
-			int width = 50;
-			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-			miniTimer = new Stage();
-			miniTimer.initStyle(StageStyle.TRANSPARENT);
-			miniTimer.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
-			miniTimer.setY(screenBounds.getMinY() + screenBounds.getHeight() - height);
-			Label turn = new Label();
-			turn.setPrefWidth(width);
-			turn.setPrefHeight(height - 25);
-			turn.setTextAlignment(TextAlignment.CENTER);
-			turn.setAlignment(Pos.CENTER);
-			turn.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 10px;");
-			turn.textProperty().bind(Settings.instance().userName);
-			Label timer = new Label();
-			timer.setPrefWidth(width);
-			timer.setPrefHeight(height - 10);
-			timer.textProperty().bind(timeMinutes);
-			timer.setTextAlignment(TextAlignment.CENTER);
-			timer.setAlignment(Pos.CENTER);
-			timer.setTextFill(Paint.valueOf("white"));
-			timer.styleProperty().bind(paneColor);
-			VBox box = new VBox();
-			box.setAlignment(Pos.CENTER);
-			box.getChildren().add(turn);
-			box.getChildren().add(timer);
-			box.setCenterShape(true);
-			final Scene scene = new Scene(box, width, height);
-			scene.setFill(Color.TRANSPARENT);
-			miniTimer.setScene(scene);
-			miniTimer.setAlwaysOnTop(true);
-			miniTimer.show();
 
-			box.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-				@Override
-				public void handle(MouseEvent event) {
-					showMainWindow();
-				}
-			});
-		}
-	}
 }
