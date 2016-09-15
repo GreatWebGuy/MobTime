@@ -5,6 +5,8 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import org.controlsfx.glyphfont.Glyph;
+
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -82,63 +84,41 @@ public class TimeController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				if (timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
-					resetStartState();
-					timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
-					timeline = new Timeline();
-					timeline.setCycleCount(Settings.instance().getTimeInSeconds());
-					timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-						// KeyFrame event handler
-						public void handle(ActionEvent event) {
-							Settings.instance().setTime(Settings.instance().getTime().minusSeconds(1));
-							timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
-							if ("00:00".equals(
-									Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
-								showRotate();
-							}
-						}
-
-					}));
-					timeline.playFromStart();
-					Settings.instance().displayUserMessage();
-					paneColor.set("-fx-background-color:#71B284");
-					hideWindow();
+					startTimer();
 				} else {
 					switch (timeline.getStatus()) {
 					case PAUSED:
-						timeline.play();
-						paneColor.set("-fx-background-color:#71B284");
-						hideWindow();
+						continueTimer();
 						break;
 					default:
 						break;
 					}
 				}
 			}
-
 		});
 
 		// Stop and reset the timer
 		stopButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				resetStartState();
+				resetTimer();
 			}
 		});
 
 		pauseButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				boolean paused = false;
-				if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {
-					timeline.pause();
-					paused = true;
-				}
-				if (nag != null && nag.getStatus().equals(Status.RUNNING)) {
-					nag.stop();
-					paused = true;
-				}
-				if (paused) {
-					paneColor.set("-fx-background-color:#FFBF00");
+				if (timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
+					startTimer();
+				} else {
+					switch (timeline.getStatus()) {
+					case PAUSED:
+						continueTimer();
+						break;
+					default:
+						pauseTimer();
+						break;
+					}
 				}
 			}
 		});
@@ -147,7 +127,7 @@ public class TimeController implements Initializable {
 			@Override
 			public void handle(ActionEvent event) {
 				Settings.instance().incrementCurrentUser();
-				resetStartState();
+				resetTimer();
 			}
 		});
 
@@ -203,10 +183,11 @@ public class TimeController implements Initializable {
 
 	}
 
-	private void resetStartState() {
+	private void resetTimer() {
 		if (timeline != null) {
 			timeline.stop();
 		}
+		pauseButton.setGraphic(new Glyph("FontAwesome","PLAY"));
 		timeMinutes.set("Start");
 		Settings.instance().initializeTime();
 		paneColor.set("-fx-background-color:#333333");
@@ -218,6 +199,13 @@ public class TimeController implements Initializable {
 		window.toFront();
 		window.requestFocus();
 	}
+	
+	private void continueTimer() {
+		timeline.play();
+		paneColor.set("-fx-background-color:#71B284");
+		pauseButton.setGraphic(new Glyph("FontAwesome","PAUSE"));
+		hideWindow();
+	}	
 
 	private void hideWindow() {
 		Timeline hide = new Timeline(1, new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
@@ -232,5 +220,44 @@ public class TimeController implements Initializable {
 		hide.playFromStart();
 	}
 
+	private void startTimer() {
+		resetTimer();
+		timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+		timeline = new Timeline();
+		timeline.setCycleCount(Settings.instance().getTimeInSeconds());
+		timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+			// KeyFrame event handler
+			public void handle(ActionEvent event) {
+				Settings.instance().setTime(Settings.instance().getTime().minusSeconds(1));
+				timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+				if ("00:00".equals(
+						Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
+					showRotate();
+				}
+			}
+
+		}));
+		timeline.playFromStart();
+		Settings.instance().displayUserMessage();
+		paneColor.set("-fx-background-color:#71B284");
+		pauseButton.setGraphic(new Glyph("FontAwesome","PAUSE"));
+		hideWindow();
+	}
+
+	private void pauseTimer() {
+		boolean paused = false;
+		pauseButton.setGraphic(new Glyph("FontAwesome","PLAY"));
+		if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {
+			timeline.pause();
+			paused = true;
+		}
+		if (nag != null && nag.getStatus().equals(Status.RUNNING)) {
+			nag.stop();
+			paused = true;
+		}
+		if (paused) {
+			paneColor.set("-fx-background-color:#FFBF00");
+		}
+	}
 
 }
