@@ -162,6 +162,7 @@ public class TimeController implements Initializable {
 		if (timeline != null) {
 			timeline.stop();
 		}
+		pauseButton.setGraphic(new Glyph("FontAwesome","PLAY"));
 		Settings.instance().incrementCurrentUser();
 		timeMinutes.set("Rotate");
 		paneColor.set("-fx-background-color:#FF0000");
