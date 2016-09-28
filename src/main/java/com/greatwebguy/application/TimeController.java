@@ -36,7 +36,6 @@ public class TimeController implements Initializable {
 	public static StringProperty timeMinutes = new SimpleStringProperty("Start");
 	public static StringProperty paneColor = new SimpleStringProperty("-fx-background-color:#333333");
 
-
 	@FXML // fx:id="startButton"
 	private Button startButton; // Value injected by FXMLLoader
 
@@ -108,7 +107,8 @@ public class TimeController implements Initializable {
 		pauseButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
+				if ((timeline == null || timeline.getStatus().equals(Status.STOPPED))
+						&& (nag == null || nag.getStatus().equals(Status.STOPPED))) {
 					startTimer();
 				} else {
 					switch (timeline.getStatus()) {
@@ -162,7 +162,6 @@ public class TimeController implements Initializable {
 		if (timeline != null) {
 			timeline.stop();
 		}
-		pauseButton.setGraphic(new Glyph("FontAwesome","PLAY"));
 		Settings.instance().incrementCurrentUser();
 		timeMinutes.set("Rotate");
 		paneColor.set("-fx-background-color:#FF0000");
@@ -188,7 +187,7 @@ public class TimeController implements Initializable {
 		if (timeline != null) {
 			timeline.stop();
 		}
-		pauseButton.setGraphic(new Glyph("FontAwesome","PLAY"));
+		pauseButton.setGraphic(new Glyph("FontAwesome", "PLAY"));
 		timeMinutes.set("Start");
 		Settings.instance().initializeTime();
 		paneColor.set("-fx-background-color:#333333");
@@ -200,13 +199,13 @@ public class TimeController implements Initializable {
 		window.toFront();
 		window.requestFocus();
 	}
-	
+
 	private void continueTimer() {
 		timeline.play();
 		paneColor.set("-fx-background-color:#71B284");
-		pauseButton.setGraphic(new Glyph("FontAwesome","PAUSE"));
+		pauseButton.setGraphic(new Glyph("FontAwesome", "PAUSE"));
 		hideWindow();
-	}	
+	}
 
 	private void hideWindow() {
 		Timeline hide = new Timeline(1, new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
@@ -231,8 +230,7 @@ public class TimeController implements Initializable {
 			public void handle(ActionEvent event) {
 				Settings.instance().setTime(Settings.instance().getTime().minusSeconds(1));
 				timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
-				if ("00:00".equals(
-						Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
+				if ("00:00".equals(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
 					showRotate();
 				}
 			}
@@ -241,13 +239,12 @@ public class TimeController implements Initializable {
 		timeline.playFromStart();
 		Settings.instance().displayUserMessage();
 		paneColor.set("-fx-background-color:#71B284");
-		pauseButton.setGraphic(new Glyph("FontAwesome","PAUSE"));
+		pauseButton.setGraphic(new Glyph("FontAwesome", "PAUSE"));
 		hideWindow();
 	}
 
 	private void pauseTimer() {
 		boolean paused = false;
-		pauseButton.setGraphic(new Glyph("FontAwesome","PLAY"));
 		if (timeline != null && timeline.getStatus().equals(Status.RUNNING)) {
 			timeline.pause();
 			paused = true;
@@ -258,6 +255,7 @@ public class TimeController implements Initializable {
 		}
 		if (paused) {
 			paneColor.set("-fx-background-color:#FFBF00");
+			pauseButton.setGraphic(new Glyph("FontAwesome", "PLAY"));
 		}
 	}
 

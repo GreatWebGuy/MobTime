@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.greatwebguy.MobTime</groupId>
   <artifactId>MobTime</artifactId>
-  <version>1.6.1</version>
+  <version>1.6.2</version>
   <organization>
   	<name>GreatWebGuy</name>
   </organization>
@@ -19,13 +19,13 @@
       <plugin>
       	<groupId>com.zenjava</groupId>
       	<artifactId>javafx-maven-plugin</artifactId>
-      	<version>8.5.0</version>
+      	<version>8.7.0</version>
       	<configuration>
       		<vendor>GreatWebGuy</vendor>
       		<identifier>MobTime</identifier>
       		<mainClass>com.greatwebguy.application.MobTime</mainClass>
       		<appName>MobTime</appName>
-      		<nativeReleaseVersion>1.6.1</nativeReleaseVersion>
+      		<nativeReleaseVersion>1.6.2</nativeReleaseVersion>
       		<nativeInstallers />
       	</configuration>
       </plugin>
