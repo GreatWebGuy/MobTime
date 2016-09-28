@@ -19,7 +19,7 @@
       <plugin>
       	<groupId>com.zenjava</groupId>
       	<artifactId>javafx-maven-plugin</artifactId>
-      	<version>8.5.0</version>
+      	<version>8.7.0</version>
       	<configuration>
       		<vendor>GreatWebGuy</vendor>
       		<identifier>MobTime</identifier>
