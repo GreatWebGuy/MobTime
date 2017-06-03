@@ -60,13 +60,13 @@ public class MobTime extends Application {
 	
 	private void openMiniTimer() {
 		if (miniTimer == null) {
-			int height = 35;
+			int height = 40;
 			int width = 50;
 			Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
 			miniTimer = new Stage();
 			miniTimer.initStyle(StageStyle.TRANSPARENT);
 			miniTimer.setX(screenBounds.getMinX() + screenBounds.getWidth() - width);
-			miniTimer.setY(screenBounds.getMinY() + screenBounds.getHeight() - height);
+			miniTimer.setY(screenBounds.getMinY() + screenBounds.getHeight() + 5 - height);
 			Label turn = new Label();
 			turn.setPrefWidth(width);
 			turn.setPrefHeight(height - 25);
@@ -82,10 +82,18 @@ public class MobTime extends Application {
 			timer.setAlignment(Pos.CENTER);
 			timer.setTextFill(Paint.valueOf("white"));
 			timer.styleProperty().bind(TimeController.paneColor);
+			Label nextTurn = new Label();
+			nextTurn.setPrefWidth(width);
+			nextTurn.setPrefHeight(5);
+			nextTurn.setTextAlignment(TextAlignment.CENTER);
+			nextTurn.setAlignment(Pos.CENTER);
+			nextTurn.setStyle("-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 7px;");
+			nextTurn.textProperty().bind(Settings.instance().nextUserMessage);
 			VBox box = new VBox();
 			box.setAlignment(Pos.CENTER);
 			box.getChildren().add(turn);
 			box.getChildren().add(timer);
+			box.getChildren().add(nextTurn);
 			box.setCenterShape(true);
 			final Scene scene = new Scene(box, width, height);
 			scene.setFill(Color.TRANSPARENT);
