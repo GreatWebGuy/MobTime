@@ -56,6 +56,9 @@ public class TimeController implements Initializable {
 
 	@FXML // fx:id="turnLabel"
 	private Label turnLabel;
+	
+	@FXML // fx:id="turnLabel"
+	private Label nextTurnLabel;
 
 	@FXML
 	private AnchorPane bottomPane;
@@ -70,12 +73,14 @@ public class TimeController implements Initializable {
 		assert settingsButton != null : "fx:id=\"settingsButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
+		assert nextTurnLabel != null : "fx:id=\"nextTurnLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert bottomPane != null : "fx:id=\"bottomPane\" was not injected: check your FXML file 'application.fxml'.";
 		Settings.instance().loadUsers();
 		Settings.instance().loadTime();
 
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
+		nextTurnLabel.textProperty().bind(Settings.instance().nextUserMessage);
 		bottomPane.styleProperty().bind(paneColor);
 		Settings.instance().displayUserMessage();
 
@@ -238,6 +243,7 @@ public class TimeController implements Initializable {
 		}));
 		timeline.playFromStart();
 		Settings.instance().displayUserMessage();
+		Settings.instance().displayNextUserMessage();
 		paneColor.set("-fx-background-color:#71B284");
 		pauseButton.setGraphic(new Glyph("FontAwesome", "PAUSE"));
 		hideWindow();

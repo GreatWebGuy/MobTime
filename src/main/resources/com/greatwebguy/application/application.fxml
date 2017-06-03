@@ -25,7 +25,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label layoutX="123.0" layoutY="11.0" text="v1.6.2" textFill="WHITE" />
+            <Label layoutX="123.0" layoutY="11.0" text="v1.6.3" textFill="WHITE" />
             <ToolBar nodeOrientation="RIGHT_TO_LEFT" styleClass="toolbar" AnchorPane.rightAnchor="0.0">
               <items>
                 	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" text="Settings" textFill="WHITE">
@@ -72,6 +72,11 @@
             <Font name="Monospaced Regular" size="187.0" />
           </font>
         </Label>
+            <Label fx:id="nextTurnLabel" alignment="BASELINE_RIGHT" centerShape="false" contentDisplay="RIGHT" layoutX="482.0" layoutY="508.0" prefHeight="50.0" prefWidth="334.0" scaleShape="false" styleClass="next-turn-label" textAlignment="RIGHT">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
             <Button fx:id="startButton" alignment="CENTER" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" opacity="0.0" snapToPixel="false" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <cursor>
                   <Cursor fx:constant="HAND" />

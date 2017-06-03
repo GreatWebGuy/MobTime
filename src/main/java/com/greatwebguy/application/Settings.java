@@ -25,6 +25,7 @@ public class Settings {
 	
 	protected ObservableList<People> users = FXCollections.observableArrayList();
 	protected StringProperty userMessage = new SimpleStringProperty("");
+	protected StringProperty nextUserMessage = new SimpleStringProperty("");
 	protected StringProperty userName = new SimpleStringProperty("MobTime");
 	
 	private Settings() {
@@ -68,17 +69,34 @@ public class Settings {
 		return users.size() > 0 ? currentUser:-1;
 	}
 	
-	public void incrementCurrentUser() {
+	public int getNextUser() {
 		int potentialUser = getCurrentUser()+1;
 		if(potentialUser == 0) {
-			displayUserMessage();
-		} else {
-			currentUser = potentialUser >= users.size()?0:potentialUser;
-			displayUserMessage();
+			return -1;
 		}
+		return potentialUser >= users.size()?0:potentialUser;
 	}
 	
-    public void displayUserMessage() {
+	public void incrementCurrentUser() {
+		int nextUser = getNextUser();
+		if(nextUser > -1) {
+			currentUser = nextUser;
+		} 
+		displayUserMessage();
+		displayNextUserMessage();
+	}
+	
+    public void displayNextUserMessage() {
+		int nextUser = getNextUser();
+		if(nextUser > -1) {
+			nextUserMessage.set(">> " + users.get(nextUser).getName());
+		} else {
+			nextUserMessage.set("");
+		}
+		
+	}
+
+	public void displayUserMessage() {
     	int index = getCurrentUser();
     	if(index > -1) {
     		String name = users.get(index).getName();
