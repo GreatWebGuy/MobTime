@@ -48,6 +48,12 @@
 	-fx-font-size: 40px;
 }
 
+.next-turn-label {
+	-fx-text-fill: #FFFFFF;
+	-fx-font-size: 20px;
+	-fx-text-alignment: 'right';
+}
+
 .main-pane {
 	-fx-background-color: #333333;
 }
