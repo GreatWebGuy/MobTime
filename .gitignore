@@ -6,5 +6,9 @@ Thumbs.db
 .project
 
 .settings/
+.idea
+*.iml
+*.iml
 
+.DS_Store
 
