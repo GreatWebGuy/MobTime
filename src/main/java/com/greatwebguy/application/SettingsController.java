@@ -33,7 +33,7 @@ public class SettingsController implements Initializable {
 	private Slider timeSlider;
 
 	@FXML // fx:id="timeInput"
-	private Label timeSettings;
+	private TextField timeSettings;
 
 	@FXML // fx:id="userInput"
 	private TextField userInput;
@@ -82,6 +82,17 @@ public class SettingsController implements Initializable {
 				int value = Math.round(newValue.intValue());
 				timeSettings.setText(value + "");
 				Settings.instance().setStartTime(value);
+			}
+		});
+
+		timeSettings.textProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				try {
+					timeSlider.setValue(Integer.parseInt(newValue));
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
 			}
 		});
 
