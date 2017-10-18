@@ -13,7 +13,7 @@
       <AnchorPane prefHeight="274.0" prefWidth="515.0" styleClass="settings-main">
          <children>
             <Label contentDisplay="CENTER" layoutX="14.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-label" text="Time" />
-            <TextField fx:id="timeSettings" alignment="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-time" text="1" />
+            <TextField fx:id="timeInput" alignment="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-time" text="1" />
             <Label alignment="CENTER" layoutX="105.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
             <Slider fx:id="timeSlider" blockIncrement="1.0" layoutX="180.0" layoutY="21.0" max="20.0" min="1.0" prefHeight="16.0" prefWidth="183.0">
                <cursor>
