@@ -2,6 +2,7 @@ package com.greatwebguy.application;
 
 import java.net.URL;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import org.apache.commons.lang3.StringUtils;
@@ -88,10 +89,12 @@ public class SettingsController implements Initializable {
 		timeSettings.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				try {
+				if (newValue.isEmpty()) {
+					//wait for number
+				} else if (containsInvalidInput(newValue)) {
+					timeSettings.setText(oldValue);
+				} else {
 					timeSlider.setValue(Integer.parseInt(newValue));
-				} catch (NumberFormatException e) {
-					e.printStackTrace();
 				}
 			}
 		});
@@ -172,6 +175,10 @@ public class SettingsController implements Initializable {
 				}
 			}
 		});
+	}
+
+	private boolean containsInvalidInput(String newValue) {
+		return !newValue.matches("\\d*") || (Integer.parseInt(newValue) > timeSlider.getMax());
 	}
 
 	private void addUser() {
