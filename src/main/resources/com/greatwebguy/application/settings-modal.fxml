@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.glyphfont.*?>
 
@@ -13,12 +10,14 @@
       <AnchorPane prefHeight="274.0" prefWidth="515.0" styleClass="settings-main">
          <children>
             <Label contentDisplay="CENTER" layoutX="14.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-label" text="Time" />
-            <Slider fx:id="timeSlider" blockIncrement="1.0" layoutX="165.0" layoutY="21.0" max="20.0" min="1.0" prefHeight="16.0" prefWidth="183.0">
+            <TextField fx:id="timeInput" alignment="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-time" text="1" />
+            <Label alignment="CENTER" layoutX="105.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
+            <Slider fx:id="timeSlider" blockIncrement="1.0" layoutX="180.0" layoutY="21.0" max="20.0" min="1.0" prefHeight="16.0" prefWidth="183.0">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>
             </Slider>
-            <Label alignment="CENTER" layoutX="90.0" layoutY="15.0" prefHeight="27.0" prefWidth="65.0" styleClass="settings-label" text="minutes" />
+
             <ListView fx:id="userList" layoutX="16.0" layoutY="86.0" prefHeight="151.0" prefWidth="388.0" />
             <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" styleClass="user-input" />
             <Button fx:id="addUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
@@ -45,7 +44,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="timeSettings" alignment="CENTER" contentDisplay="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="25.0" styleClass="settings-time" text="1" />
+
             <Button fx:id="upUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="120.0" mnemonicParsing="false" text="Up">
                <cursor>
                   <Cursor fx:constant="HAND" />
