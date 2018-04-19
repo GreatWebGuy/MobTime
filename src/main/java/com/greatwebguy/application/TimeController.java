@@ -143,6 +143,7 @@ public class TimeController implements Initializable {
 					Parent root = FXMLLoader.load(SettingsController.class.getResource("settings-modal.fxml"));
 					stage.setScene(new Scene(root));
 					stage.setTitle("Settings");
+					stage.setResizable(false);
 					stage.initModality(Modality.WINDOW_MODAL);
 					stage.initOwner(((Node) event.getSource()).getScene().getWindow());
 					stage.show();

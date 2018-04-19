@@ -2,18 +2,13 @@
 
 <?import javafx.scene.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.media.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
 <?import java.net.*?>
-<?import java.util.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.glyphfont.*?>
 
-<VBox prefHeight="597.0" prefWidth="826.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
+<VBox minHeight="597.0" minWidth="826.0" prefHeight="597.0" prefWidth="826.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.TimeController">
   <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="toolbar">
          <children>
@@ -25,7 +20,7 @@
                   <Insets left="10.0" />
                </padding>
             </Label>
-            <Label layoutX="123.0" layoutY="11.0" text="v1.6.3" textFill="WHITE" />
+            <Label layoutX="123.0" layoutY="11.0" text="v1.6.4" textFill="WHITE" />
             <ToolBar nodeOrientation="RIGHT_TO_LEFT" styleClass="toolbar" AnchorPane.rightAnchor="0.0">
               <items>
                 	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" text="Settings" textFill="WHITE">
