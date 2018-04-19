@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import org.controlsfx.glyphfont.*?>
 
-<VBox fx:id="settingsModal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="261.0" prefWidth="513.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
+<VBox fx:id="settingsModal" maxHeight="261.0" maxWidth="513.0" minHeight="261.0" minWidth="513.0" prefHeight="261.0" prefWidth="513.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
    <children>
-      <AnchorPane prefHeight="274.0" prefWidth="515.0" styleClass="settings-main">
+      <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="settings-main" VBox.vgrow="ALWAYS">
          <children>
             <Label contentDisplay="CENTER" layoutX="14.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-label" text="Time" />
             <TextField fx:id="timeInput" alignment="CENTER" layoutX="59.0" layoutY="15.0" prefHeight="27.0" prefWidth="45.0" styleClass="settings-time" text="1" />
