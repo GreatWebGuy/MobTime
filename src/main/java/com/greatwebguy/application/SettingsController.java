@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.ResourceBundle;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -180,7 +178,7 @@ public class SettingsController implements Initializable {
 	}
 
 	private void addUser() {
-		if (StringUtils.isNotBlank(userInput.getText())) {
+		if (!userInput.getText().isBlank()) {
 			ObservableList<People> users = Settings.instance().users;
 			if (users.size() == 0) {
 				Settings.instance().setCurrentUser(0);

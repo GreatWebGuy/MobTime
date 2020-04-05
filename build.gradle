@@ -1,0 +1,54 @@
+plugins {
+    id "java"
+    id "application"
+    id "org.openjfx.javafxplugin"        version "0.0.8"
+    //id "org.beryx.jlink"                 version "2.15.1"
+}
+
+mainClassName = "com.greatwebguy.application.MobTime"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    implementation ('org.controlsfx:controlsfx:11.0.1' ) {
+        exclude group: 'org.openjfx', module: 'javafx-fxml'
+        exclude group: 'org.openjfx', module: 'javafx-web'
+        exclude group: 'org.openjfx', module: 'javafx-media'
+    }
+//    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:win"
+//    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:linux"
+//    runtimeOnly "org.openjfx:javafx-graphics:$javafx.version:mac"
+}
+
+sourceCompatibility = JavaVersion.VERSION_14
+targetCompatibility = JavaVersion.VERSION_14
+
+javafx {
+    version = "14"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media' ]
+}
+
+
+
+applicationDefaultJvmArgs =  [
+    "--add-exports=javafx.graphics/com.sun.javafx.css=ALL-UNNAMED"
+]
+//
+//jlink {
+//    imageZip.set(file("${buildDir}/distributions/${appPackaging}-${javafx.platform.classifier}.zip"))
+//    options.addAll(["--strip-debug", "--compress", "2", "--no-header-files", "--no-man-pages"])
+//    launcher {
+//        name = "${appLauncher}"
+//        jvmArgs = applicationDefaultJvmArgs
+//    }
+//}
+//
+//task dist {
+//    dependsOn clean, jlinkZip
+//    description "Calls clean and then jlinkZip [default]"
+//}
+//
+//defaultTasks "dist"
