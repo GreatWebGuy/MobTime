@@ -5,14 +5,17 @@ For Timing Mob Sessions
 
 ### Build
 #### Requirements
-- Maven 3.x
-- JDK 1.8
-- JavaFX SDK
+- Gradle 6.x
+- OpenJDK 14
+- JavaFX 14
 
 #### Package generation
-- To build a jar, run: **mvn jfx:jar**
-- To build native on Mac on Windows, run: **mvn jfx:native**
-
+MacOSX
+```./gradlew jpackage -PinstallerType=pkg```
+Windows
+```gradlew.bat jpackage -PinstallerType=msi```
+Linux
+```./gradlew jpackage -PinstallerType=deb```
 ### Use
 - Download the MacOSX or Windows installer, install and run
 - Default time is 7 minutes
