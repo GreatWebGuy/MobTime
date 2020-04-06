@@ -35,7 +35,8 @@ jlink {
     jpackage {
         installerOptions = [
             '--description', "Mob Timer for Mob Programming",
-            '--copyright', 'Copyright 2020 GreatWebGuy'
+            '--copyright', 'Copyright 2020 GreatWebGuy',
+            '--app-version', '7.0'
         ]
         installerType = project.findProperty('installerType') // we will pass this from the command line (example: -PinstallerType=msi)
         if (installerType == 'msi') {
