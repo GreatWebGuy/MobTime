@@ -14,13 +14,13 @@ For Timing Mob Sessions
 - Install WIX buil tools
 - Update paths in gradle.properties to match location of jdk and jmods
 
-### MacOS
+#### MacOS
 - Update paths in gradle.properties to match location of jdk and jmods
 
-## Linux (Ubuntu)
+#### Linux (Ubuntu)
 - Update paths in gradle.properties to match location of jdk and jmods
 
-#### Package generation
+### Package generation
 MacOSX
 ```./gradlew jpackage -PinstallerType=pkg```
 Windows
