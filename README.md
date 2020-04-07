@@ -11,7 +11,7 @@ For Timing Mob Sessions
 
 #### Windows
 - enable .net framework 3.5.1 on Windows 10
-- Install WIX buil tools
+- Install WIX build tools
 - Update paths in gradle.properties to match location of jdk and jmods
 
 #### MacOS
