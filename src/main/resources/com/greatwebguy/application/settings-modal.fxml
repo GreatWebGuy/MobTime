@@ -3,7 +3,7 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import org.controlsfx.glyphfont.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <VBox fx:id="settingsModal" maxHeight="261.0" maxWidth="513.0" minHeight="261.0" minWidth="513.0" prefHeight="261.0" prefWidth="513.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.greatwebguy.application.SettingsController">
    <children>
@@ -22,23 +22,23 @@
             <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" styleClass="user-input" />
             <Button fx:id="addUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
             	<graphic>
-      			    <Glyph fontFamily="FontAwesome" icon="PLUS" styleClass="settings-button" />
-      			</graphic>
+                 <FontIcon iconLiteral="fa-plus" iconColor="white" styleClass="settings-button" />
+              </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <Button fx:id="removeUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove">
             	<graphic>
-      			    <Glyph fontFamily="FontAwesome" icon="MINUS" styleClass="settings-button" />
-      			</graphic>
+                 <FontIcon iconLiteral="fa-minus" iconColor="white" styleClass="settings-button" />
+      			   </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
             <Button fx:id="nextUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="208.0" mnemonicParsing="false" styleClass="next-button" text="Next">
-	   			<graphic>
-	                <Glyph fontFamily="FontAwesome" icon="FORWARD" styleClass="settings-button" />
+	   			     <graphic>
+                  <FontIcon iconLiteral="fa-forward" iconColor="white" styleClass="settings-button" />
 	             </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <Glyph fontFamily="FontAwesome" icon="ARROW_UP" styleClass="settings-button" />
+                  <FontIcon iconLiteral="fa-arrow-up" iconColor="white" styleClass="settings-button" />
                </graphic>
             </Button>
             <Button fx:id="downUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="155.0" mnemonicParsing="false" text="Down">
@@ -58,7 +58,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <Glyph fontFamily="FontAwesome" icon="ARROW_DOWN" styleClass="settings-button" />
+                  <FontIcon iconLiteral="fa-arrow-down" iconColor="white" styleClass="settings-button" />
                </graphic>
             </Button>
          </children>

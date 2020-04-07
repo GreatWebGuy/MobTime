@@ -5,16 +5,31 @@ For Timing Mob Sessions
 
 ### Build
 #### Requirements
-- Maven 3.x
-- JDK 1.8
-- JavaFX SDK
+- Gradle 6.x
+- OpenJDK 14
+- Jmods for JavaFX 14
+
+#### Windows
+- enable .net framework 3.5.1 on Windows 10
+- Install WIX buil tools
+- Update paths in gradle.properties to match location of jdk and jmods
+
+### MacOS
+- Update paths in gradle.properties to match location of jdk and jmods
+
+## Linux (Ubuntu)
+- Update paths in gradle.properties to match location of jdk and jmods
 
 #### Package generation
-- To build a jar, run: **mvn jfx:jar**
-- To build native on Mac on Windows, run: **mvn jfx:native**
+MacOSX
+```./gradlew jpackage -PinstallerType=pkg```
+Windows
+```gradlew.bat jpackage -PinstallerType=msi```
+Linux (Ubuntu)
+```./gradlew jpackage -PinstallerType=deb```
 
 ### Use
-- Download the MacOSX or Windows installer, install and run
+- Download the MacOSX, Windows, or Linux (Ubuntu/Debian) installer, install and run
 - Default time is 7 minutes
 - Click center of screen to start timer
 

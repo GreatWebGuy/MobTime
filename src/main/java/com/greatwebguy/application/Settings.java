@@ -8,7 +8,6 @@ import java.io.PrintWriter;
 import java.time.LocalTime;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.StringUtils;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -123,7 +122,7 @@ public class Settings {
 			String users = brTest.readLine();
 			String[] people = users.split(",");
 			for (String person : people) {
-				if (StringUtils.isNotBlank(person)) {
+				if (!person.isBlank()) {
 					Settings.instance().users.add(new People(person));
 				}
 			}
@@ -145,7 +144,7 @@ public class Settings {
 		String path = getTimeStoragePath();
 		try (BufferedReader brTime = new BufferedReader(new FileReader(path))) {
 			String time = brTime.readLine();
-			if(StringUtils.isNotBlank(time)) {
+			if(!time.isBlank()) {
 				Settings.instance().setStartTime(Integer.parseInt(time));
 			}
 		} catch (Exception e) {

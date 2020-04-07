@@ -5,8 +5,6 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-import org.controlsfx.glyphfont.Glyph;
-
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -28,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class TimeController implements Initializable {
 	private Timeline timeline;
@@ -193,7 +192,7 @@ public class TimeController implements Initializable {
 		if (timeline != null) {
 			timeline.stop();
 		}
-		pauseButton.setGraphic(new Glyph("FontAwesome", "PLAY"));
+		pauseButton.setGraphic(new FontIcon("fa-play"));
 		timeMinutes.set("Start");
 		Settings.instance().initializeTime();
 		paneColor.set("-fx-background-color:#333333");
@@ -209,7 +208,7 @@ public class TimeController implements Initializable {
 	private void continueTimer() {
 		timeline.play();
 		paneColor.set("-fx-background-color:#71B284");
-		pauseButton.setGraphic(new Glyph("FontAwesome", "PAUSE"));
+		pauseButton.setGraphic(new FontIcon("fa-pause"));
 		hideWindow();
 	}
 
@@ -246,7 +245,7 @@ public class TimeController implements Initializable {
 		Settings.instance().displayUserMessage();
 		Settings.instance().displayNextUserMessage();
 		paneColor.set("-fx-background-color:#71B284");
-		pauseButton.setGraphic(new Glyph("FontAwesome", "PAUSE"));
+		pauseButton.setGraphic(new FontIcon("fa-pause"));
 		hideWindow();
 	}
 
@@ -262,7 +261,7 @@ public class TimeController implements Initializable {
 		}
 		if (paused) {
 			paneColor.set("-fx-background-color:#FFBF00");
-			pauseButton.setGraphic(new Glyph("FontAwesome", "PLAY"));
+			pauseButton.setGraphic(new FontIcon("fa-play"));
 		}
 	}
 
