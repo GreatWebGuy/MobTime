@@ -27,8 +27,9 @@ Windows
 ```gradlew.bat jpackage -PinstallerType=msi```
 Linux (Ubuntu)
 ```./gradlew jpackage -PinstallerType=deb```
+
 ### Use
-- Download the MacOSX or Windows installer, install and run
+- Download the MacOSX, Windows, or Linux (Ubuntu/Debian) installer, install and run
 - Default time is 7 minutes
 - Click center of screen to start timer
 
