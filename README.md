@@ -7,14 +7,25 @@ For Timing Mob Sessions
 #### Requirements
 - Gradle 6.x
 - OpenJDK 14
-- JavaFX 14
+- Jmods for JavaFX 14
+
+#### Windows
+- enable .net framework 3.5.1 on Windows 10
+- Install WIX buil tools
+- Update paths in gradle.properties to match location of jdk and jmods
+
+### MacOS
+- Update paths in gradle.properties to match location of jdk and jmods
+
+## Linux (Ubuntu)
+- Update paths in gradle.properties to match location of jdk and jmods
 
 #### Package generation
 MacOSX
 ```./gradlew jpackage -PinstallerType=pkg```
 Windows
 ```gradlew.bat jpackage -PinstallerType=msi```
-Linux
+Linux (Ubuntu)
 ```./gradlew jpackage -PinstallerType=deb```
 ### Use
 - Download the MacOSX or Windows installer, install and run
