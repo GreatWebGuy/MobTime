@@ -21,12 +21,12 @@ For Timing Mob Sessions
 - Update paths in gradle.properties to match location of jdk and jmods
 
 ### Package generation
-MacOSX
-```./gradlew jpackage -PinstallerType=pkg```
-Windows
-```gradlew.bat jpackage -PinstallerType=msi```
-Linux (Ubuntu)
-```./gradlew jpackage -PinstallerType=deb```
+> MacOSX
+> ```./gradlew jpackage -PinstallerType=pkg```
+> Windows
+> ```gradlew.bat jpackage -PinstallerType=msi```
+> Linux (Ubuntu)
+> ```./gradlew jpackage -PinstallerType=deb```
 
 ### Use
 - Download the MacOSX, Windows, or Linux (Ubuntu/Debian) installer, install and run
