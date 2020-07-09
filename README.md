@@ -23,8 +23,10 @@ For Timing Mob Sessions
 ### Package generation
 > MacOSX
 > ```./gradlew jpackage -PinstallerType=pkg```
+
 > Windows
 > ```gradlew.bat jpackage -PinstallerType=msi```
+
 > Linux (Ubuntu)
 > ```./gradlew jpackage -PinstallerType=deb```
 
