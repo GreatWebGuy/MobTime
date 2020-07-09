@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -192,7 +193,9 @@ public class TimeController implements Initializable {
 		if (timeline != null) {
 			timeline.stop();
 		}
-		pauseButton.setGraphic(new FontIcon("fa-play"));
+		FontIcon icon = new FontIcon("fa-play");
+		icon.setIconColor(Color.WHITE);
+		pauseButton.setGraphic(icon);
 		timeMinutes.set("Start");
 		Settings.instance().initializeTime();
 		paneColor.set("-fx-background-color:#333333");
@@ -208,7 +211,9 @@ public class TimeController implements Initializable {
 	private void continueTimer() {
 		timeline.play();
 		paneColor.set("-fx-background-color:#71B284");
-		pauseButton.setGraphic(new FontIcon("fa-pause"));
+		FontIcon icon = new FontIcon("fa-pause");
+		icon.setIconColor(Color.WHITE);
+		pauseButton.setGraphic(icon);
 		hideWindow();
 	}
 
@@ -245,7 +250,9 @@ public class TimeController implements Initializable {
 		Settings.instance().displayUserMessage();
 		Settings.instance().displayNextUserMessage();
 		paneColor.set("-fx-background-color:#71B284");
-		pauseButton.setGraphic(new FontIcon("fa-pause"));
+		FontIcon icon = new FontIcon("fa-pause");
+		icon.setIconColor(Color.WHITE);
+		pauseButton.setGraphic(icon);
 		hideWindow();
 	}
 
@@ -261,7 +268,9 @@ public class TimeController implements Initializable {
 		}
 		if (paused) {
 			paneColor.set("-fx-background-color:#FFBF00");
-			pauseButton.setGraphic(new FontIcon("fa-play"));
+			FontIcon icon = new FontIcon("fa-play");
+			icon.setIconColor(Color.WHITE);
+			pauseButton.setGraphic(icon);
 		}
 	}
 
