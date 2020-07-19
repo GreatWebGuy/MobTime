@@ -89,26 +89,44 @@ public class Settings {
 		displayNextUserMessage();
 	}
 
-	private void displayNextUserMessage() {
-		int nextUser = getNextUser();
-		if(nextUser > -1) {
-			nextUserMessage.set(">> " + users.get(nextUser).getName());
-		} else {
-			nextUserMessage.set("");
+	private People getUser(int index) {
+		if (users.isEmpty()) {
+			return null;
 		}
-		
+		return users.get((index) % users.size());
+	}
+
+	private void displayNextUserMessage() {
+		People user = getUser(getCurrentUser() + 1);
+		if (user == null) {
+			nextUserMessage.set("");
+			return;
+		}
+		if (isBreak(user)) {
+			user = getUser(getCurrentUser() + 2);
+		}
+		nextUserMessage.set(">> " + user.getName());
+	}
+
+	private boolean isBreak(People user) {
+		return "break".equalsIgnoreCase(user.getName());
 	}
 
 	private void displayUserMessage() {
-    	int index = getCurrentUser();
-    	if(index > -1) {
-    		String name = users.get(index).getName();
-    		userMessage.set(name +"'s Turn");
-    		userName.set(name);
-    	} else {
-    		userMessage.set("");
-    		userName.set("MobTime");
-    	}
+		People user = getUser(getCurrentUser());
+		if (user == null) {
+			userMessage.set("");
+			userName.set("MobTime");
+			return;
+		}
+		if (isBreak(user)) {
+			userMessage.set("Break");
+			userName.set("Break");
+		} else {
+			String name = user.getName();
+			userMessage.set(name +"'s Turn");
+			userName.set(name);
+		}
 	}
     
 	public void storeUsers() {
