@@ -89,7 +89,7 @@ public class Settings {
 		displayNextUserMessage();
 	}
 
-	public void displayNextUserMessage() {
+	private void displayNextUserMessage() {
 		int nextUser = getNextUser();
 		if(nextUser > -1) {
 			nextUserMessage.set(">> " + users.get(nextUser).getName());
@@ -99,7 +99,7 @@ public class Settings {
 		
 	}
 
-	public void displayUserMessage() {
+	private void displayUserMessage() {
     	int index = getCurrentUser();
     	if(index > -1) {
     		String name = users.get(index).getName();

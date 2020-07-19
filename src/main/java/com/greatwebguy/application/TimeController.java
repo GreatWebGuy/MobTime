@@ -25,6 +25,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
@@ -84,81 +85,68 @@ public class TimeController implements Initializable {
 		bottomPane.styleProperty().bind(paneColor);
 		Settings.instance().updateUserDisplay();
 
-		startButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				if (timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
-					startTimer();
-				} else {
-					switch (timeline.getStatus()) {
-					case PAUSED:
-						continueTimer();
-						break;
-					default:
-						break;
-					}
+		startButton.setOnAction(event -> startButtonPressed());
+		stopButton.setOnAction(event -> resetTimer());
+		pauseButton.setOnAction(event -> pauseButtonPressed());
+		skipButton.setOnAction(event -> skipButtonPressed());
+		settingsButton.setOnAction(event -> settingsButtonPressed(((Node) event.getSource()).getScene().getWindow()));
+	}
+
+	private void settingsButtonPressed(Window owner) {
+		try {
+			Stage stage = new Stage();
+			Parent root = FXMLLoader.load(SettingsController.class.getResource("settings-modal.fxml"));
+			stage.setScene(new Scene(root));
+			stage.setTitle("Settings");
+			stage.setResizable(false);
+			stage.initModality(Modality.WINDOW_MODAL);
+			stage.initOwner(owner);
+			stage.show();
+			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+				@Override
+				public void handle(WindowEvent event) {
+					Settings.instance().storeUsers();
+					Settings.instance().storeTime();
 				}
-			}
-		});
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-		// Stop and reset the timer
-		stopButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				resetTimer();
-			}
-		});
+	private void skipButtonPressed() {
+		Settings.instance().incrementCurrentUser();
+		resetTimer();
+	}
 
-		pauseButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				if ((timeline == null || timeline.getStatus().equals(Status.STOPPED))
-						&& (nag == null || nag.getStatus().equals(Status.STOPPED))) {
-					startTimer();
-				} else {
-					switch (timeline.getStatus()) {
-					case PAUSED:
-						continueTimer();
-						break;
-					default:
-						pauseTimer();
-						break;
-					}
-				}
+	private void pauseButtonPressed() {
+		if ((timeline == null || timeline.getStatus().equals(Status.STOPPED))
+				&& (nag == null || nag.getStatus().equals(Status.STOPPED))) {
+			startTimer();
+		} else {
+			switch (timeline.getStatus()) {
+				case PAUSED:
+					continueTimer();
+					break;
+				default:
+					pauseTimer();
+					break;
 			}
-		});
+		}
+	}
 
-		skipButton.setOnAction(new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				Settings.instance().incrementCurrentUser();
-				resetTimer();
+	private void startButtonPressed() {
+		if (timeline == null || timeline.getStatus().equals(Status.STOPPED)) {
+			startTimer();
+		} else {
+			switch (timeline.getStatus()) {
+				case PAUSED:
+					continueTimer();
+					break;
+				default:
+					break;
 			}
-		});
-
-		settingsButton.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				try {
-					Stage stage = new Stage();
-					Parent root = FXMLLoader.load(SettingsController.class.getResource("settings-modal.fxml"));
-					stage.setScene(new Scene(root));
-					stage.setTitle("Settings");
-					stage.setResizable(false);
-					stage.initModality(Modality.WINDOW_MODAL);
-					stage.initOwner(((Node) event.getSource()).getScene().getWindow());
-					stage.show();
-					stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-						@Override
-						public void handle(WindowEvent event) {
-							Settings.instance().storeUsers();
-							Settings.instance().storeTime();
-						}
-					});
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		});
+		}
 	}
 
 	private void showRotate() {
@@ -235,25 +223,23 @@ public class TimeController implements Initializable {
 		timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
 		timeline = new Timeline();
 		timeline.setCycleCount(Settings.instance().getTimeInSeconds());
-		timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-			// KeyFrame event handler
-			public void handle(ActionEvent event) {
-				Settings.instance().setTime(Settings.instance().getTime().minusSeconds(1));
-				timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
-				if ("00:00".equals(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
-					showRotate();
-				}
-			}
-
-		}));
+		// KeyFrame event handler
+		timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> handleTimeDecrement()));
 		timeline.playFromStart();
-		Settings.instance().displayUserMessage();
-		Settings.instance().displayNextUserMessage();
+		Settings.instance().updateUserDisplay();
 		paneColor.set("-fx-background-color:#71B284");
 		FontIcon icon = new FontIcon("fa-pause");
 		icon.setIconColor(Color.WHITE);
 		pauseButton.setGraphic(icon);
 		hideWindow();
+	}
+
+	private void handleTimeDecrement() {
+		Settings.instance().setTime(Settings.instance().getTime().minusSeconds(1));
+		timeMinutes.set(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")));
+		if ("00:00".equals(Settings.instance().getTime().format(DateTimeFormatter.ofPattern("mm:ss")))) {
+			showRotate();
+		}
 	}
 
 	private void pauseTimer() {
