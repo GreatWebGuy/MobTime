@@ -61,7 +61,7 @@ public class Settings {
 	
 	public void setCurrentUser(int index) {
 		currentUser = index;
-		displayUserMessage();
+		updateUserDisplay();
 	}
 	
 	public int getCurrentUser() {
@@ -80,12 +80,16 @@ public class Settings {
 		int nextUser = getNextUser();
 		if(nextUser > -1) {
 			currentUser = nextUser;
-		} 
+		}
+		updateUserDisplay();
+	}
+
+	public void updateUserDisplay() {
 		displayUserMessage();
 		displayNextUserMessage();
 	}
-	
-    public void displayNextUserMessage() {
+
+	public void displayNextUserMessage() {
 		int nextUser = getNextUser();
 		if(nextUser > -1) {
 			nextUserMessage.set(">> " + users.get(nextUser).getName());

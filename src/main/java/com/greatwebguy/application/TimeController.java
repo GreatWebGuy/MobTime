@@ -82,7 +82,7 @@ public class TimeController implements Initializable {
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
 		nextTurnLabel.textProperty().bind(Settings.instance().nextUserMessage);
 		bottomPane.styleProperty().bind(paneColor);
-		Settings.instance().displayUserMessage();
+		Settings.instance().updateUserDisplay();
 
 		startButton.setOnAction(new EventHandler<ActionEvent>() {
 			@Override

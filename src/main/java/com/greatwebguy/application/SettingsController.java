@@ -185,7 +185,7 @@ public class SettingsController implements Initializable {
 			}
 			users.add(new People(userInput.getText()));
 			userInput.clear();
-			Settings.instance().displayUserMessage();
+			Settings.instance().updateUserDisplay();
 		}
 	}
 
