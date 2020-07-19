@@ -61,7 +61,7 @@ public class Settings {
 	
 	public void setCurrentUser(int index) {
 		currentUser = index;
-		displayUserMessage();
+		updateUserDisplay();
 	}
 	
 	public int getCurrentUser() {
@@ -80,31 +80,58 @@ public class Settings {
 		int nextUser = getNextUser();
 		if(nextUser > -1) {
 			currentUser = nextUser;
-		} 
+		}
+		updateUserDisplay();
+	}
+
+	public void updateUserDisplay() {
 		displayUserMessage();
 		displayNextUserMessage();
 	}
-	
-    public void displayNextUserMessage() {
-		int nextUser = getNextUser();
-		if(nextUser > -1) {
-			nextUserMessage.set(">> " + users.get(nextUser).getName());
-		} else {
-			nextUserMessage.set("");
+
+	private People getUser(int index) {
+		if (users.isEmpty()) {
+			return null;
 		}
-		
+		return users.get((index) % users.size());
 	}
 
-	public void displayUserMessage() {
-    	int index = getCurrentUser();
-    	if(index > -1) {
-    		String name = users.get(index).getName();
-    		userMessage.set(name +"'s Turn");
-    		userName.set(name);
-    	} else {
-    		userMessage.set("");
-    		userName.set("MobTime");
-    	}
+	private void displayNextUserMessage() {
+		People user = getUser(getCurrentUser() + 1);
+		if (user == null) {
+			nextUserMessage.set("");
+			return;
+		}
+		if (isBreak(user)) {
+			user = getUser(getCurrentUser() + 2);
+		}
+		nextUserMessage.set(">> " + user.getName());
+	}
+
+	private boolean isBreak(People user) {
+		return "break".equalsIgnoreCase(user.getName());
+	}
+
+	public File getScript(People user) {
+		String script = System.getenv("MOBTIME_SCRIPT");
+		return new File(script.replaceAll("\\{name\\}", user.getName().toLowerCase()));
+	}
+
+	private void displayUserMessage() {
+		People user = getUser(getCurrentUser());
+		if (user == null) {
+			userMessage.set("");
+			userName.set("MobTime");
+			return;
+		}
+		if (isBreak(user)) {
+			userMessage.set("Break");
+			userName.set("Break");
+		} else {
+			String name = user.getName();
+			userMessage.set(name +"'s Turn");
+			userName.set(name);
+		}
 	}
     
 	public void storeUsers() {
@@ -163,5 +190,17 @@ public class Settings {
 		String path = home + File.separator + ".mobtime-time";
 		return path;
 	}
-	
+
+	public void runUserScript() {
+		try {
+			People user = getUser(getCurrentUser());
+			File script = getScript(user);
+			if (script.exists()) {
+				ProcessBuilder processBuilder = new ProcessBuilder(script.getAbsolutePath());
+				processBuilder.start();
+			}
+		} catch (Exception e) {
+			//ignore
+		}
+	}
 }
