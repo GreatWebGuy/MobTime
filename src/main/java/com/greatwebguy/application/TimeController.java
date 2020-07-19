@@ -227,6 +227,7 @@ public class TimeController implements Initializable {
 		timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(1), event -> handleTimeDecrement()));
 		timeline.playFromStart();
 		Settings.instance().updateUserDisplay();
+		Settings.instance().runUserScript();
 		paneColor.set("-fx-background-color:#71B284");
 		FontIcon icon = new FontIcon("fa-pause");
 		icon.setIconColor(Color.WHITE);

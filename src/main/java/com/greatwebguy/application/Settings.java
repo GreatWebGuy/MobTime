@@ -112,6 +112,11 @@ public class Settings {
 		return "break".equalsIgnoreCase(user.getName());
 	}
 
+	public File getScript(People user) {
+		String script = System.getenv("MOBTIME_SCRIPT");
+		return new File(script.replaceAll("\\{name\\}", user.getName().toLowerCase()));
+	}
+
 	private void displayUserMessage() {
 		People user = getUser(getCurrentUser());
 		if (user == null) {
@@ -185,5 +190,17 @@ public class Settings {
 		String path = home + File.separator + ".mobtime-time";
 		return path;
 	}
-	
+
+	public void runUserScript() {
+		try {
+			People user = getUser(getCurrentUser());
+			File script = getScript(user);
+			if (script.exists()) {
+				ProcessBuilder processBuilder = new ProcessBuilder(script.getAbsolutePath());
+				processBuilder.start();
+			}
+		} catch (Exception e) {
+			//ignore
+		}
+	}
 }

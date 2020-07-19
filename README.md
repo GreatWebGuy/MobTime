@@ -40,6 +40,11 @@ For Timing Mob Sessions
  * Skip to skip to the next user
  * Stop to stop rotate nag alarm or current users turn
  * Settings - Add/Remove users for named rotation and Skip/Reorders users 
+ 
+#### Secret Menu
+ * If a user is called `break` it will function as a break
+ * If you add an environment variable such as `export MOBTIME_SCRIPT=/Users/jason-crow/{name}.py` it will run that file if it exists for current person
+ 
 
 ![Info Graphic Mobtime](docs/images/mobtime-info-graphic.png "Info Graphic Mobtime")
 
