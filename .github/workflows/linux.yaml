@@ -19,4 +19,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: MobTime
-          path: build/jpackage/mobtime_[0-9\.]+-1_amd64.deb
+          path: build/jpackage/mobtime_*-1_amd64.deb
