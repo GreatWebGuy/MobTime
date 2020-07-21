@@ -14,4 +14,4 @@ jobs:
           java-version: 14.0.2
           java-package: jdk+fx
       - name: Build with Gradle
-        run: ./gradlew build
+        run: ./gradlew jpackage -PinstallerType=pkg
