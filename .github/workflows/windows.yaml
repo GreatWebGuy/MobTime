@@ -14,9 +14,9 @@ jobs:
       - name: Download JFX JMods
         shell: powershell
         run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-14-0-1-jmods-windows/ -OutFile openjfx-14.0.1_windows-x64_bin-jmods.zip
-      - uses: montudor/action-zip@v0.1.0
-        with:
-          args: unzip -qq openjfx-14.0.1_windows-x64_bin-jmods.zip -d ./
+      - name: Unzip JFX
+        shell: powershell
+        run: Expand-Archive -Path openjfx-14.0.1_windows-x64_bin-jmods.zip -Force
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.5.x'
@@ -29,3 +29,6 @@ jobs:
       - name: List directory
         shell: powershell
         run: ls -al
+      - name: List directory
+        shell: powershell
+        run: ls openjfx-14.0.1_windows-x64_bin-jmods -al
