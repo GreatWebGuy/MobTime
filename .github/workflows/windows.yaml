@@ -17,9 +17,9 @@ jobs:
       - name: Unzip JFX
         shell: powershell
         run: Expand-Archive -Path openjfx-14.0.1_windows-x64_bin-jmods.zip -Force
-      - uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '3.5.x'
+      - name: List directory
+        shell: powershell
+        run: ls openjfx-14.0.1_windows-x64_bin-jmods -al
       - name: Download Wix
         shell: powershell
         run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
@@ -29,6 +29,3 @@ jobs:
       - name: List directory
         shell: powershell
         run: ls -al
-      - name: List directory
-        shell: powershell
-        run: ls openjfx-14.0.1_windows-x64_bin-jmods -al
