@@ -8,8 +8,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install openjdk 14
-        uses: crazy-max/ghaction-chocolatey@v1
+      - uses: joschi/setup-jdk@v2
         with:
-          args: install openjdk
+          java-version: '14.0.2' # The OpenJDK version to make available on the path
       - run: java -version
