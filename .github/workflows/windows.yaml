@@ -17,15 +17,13 @@ jobs:
       - name: Unzip JFX
         shell: powershell
         run: Expand-Archive -Path openjfx-14.0.1_windows-x64_bin-jmods.zip -Force
-      - name: List directory
-        shell: powershell
-        run: ls openjfx-14.0.1_windows-x64_bin-jmods
       - name: Download Wix
         shell: powershell
         run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
-      - name: Install Wix
-        shell: powershell
-        run: wix311.exe /install /quiet /norestart
       - name: List directory
         shell: powershell
-        run: ls -al
+        run: ls
+      - name: Install Wix
+        shell: powershell
+        run: ./wix311.exe /install /quiet /norestart
+
