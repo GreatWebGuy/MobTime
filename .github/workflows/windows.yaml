@@ -20,10 +20,13 @@ jobs:
       - name: Download Wix
         shell: powershell
         run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
-      - name: List directory
-        shell: powershell
-        run: ls
       - name: Install Wix
         shell: powershell
         run: ./wix311.exe /install /quiet /norestart
+      - name: Build with Gradle
+        shell: powershell
+        run: ./gradlew.bat jpackage -PinstallerType=msi
+      - uses: actions/upload-artifact@v2
+        with:
+          path: build/jpackage/MobTime*.msi
 
