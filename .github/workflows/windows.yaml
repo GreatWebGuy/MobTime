@@ -11,7 +11,7 @@ jobs:
       - uses: joschi/setup-jdk@v2
         with:
           java-version: '14' # The OpenJDK version to make available on the path
-      - name Download JFX JMods
+      - name: Download JFX JMods
         shell: powershell
         run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-14-0-1-jmods-windows/ -OutFile openjfx-14.0.1_windows-x64_bin-jmods.zip
       - uses: montudor/action-zip@v0.1.0
@@ -20,12 +20,12 @@ jobs:
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.5.x'
-      - name Download Wix
+      - name: Download Wix
         shell: powershell
         run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
-      - name Install Wix
+      - name: Install Wix
         shell: powershell
         run: wix311.exe /install /quiet /norestart
-      - name List directory
+      - name: List directory
         shell: powershell
         run: ls -al
