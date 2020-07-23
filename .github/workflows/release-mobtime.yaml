@@ -21,6 +21,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: MobTime ${{ github.ref }}
+          body_path: release.md
       - name: Version
         id: version
         run: echo "::set-output name=version_semver::${{ github.ref }}" | sed 's/v\([0-9.]\+\)/\1/'
