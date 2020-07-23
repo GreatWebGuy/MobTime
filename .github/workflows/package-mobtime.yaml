@@ -5,7 +5,6 @@ on: [push]
 jobs:
   build_linux:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 14
@@ -16,11 +15,11 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=deb
       - uses: actions/upload-artifact@v2
+        name: MobTime-Linux
         with:
           path: ./build/jpackage/mobtime_*-1_amd64.deb
   build_windows:
     runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: joschi/setup-jdk@v2
@@ -42,11 +41,11 @@ jobs:
         shell: powershell
         run: ./gradlew.bat jpackage -PinstallerType=msi
       - uses: actions/upload-artifact@v2
+        name: MobTime-Windows
         with:
           path: build/jpackage/MobTime-*.msi
   build_mac:
     runs-on: macos-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 14
@@ -57,5 +56,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
       - uses: actions/upload-artifact@v2
+        name: MobTime-Mac
         with:
           path: build/jpackage/MobTime-*.pkg

@@ -32,65 +32,69 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a id="mobtime" class="anchor" href="#mobtime" aria-hidden="true"><span class="octicon octicon-link"></span></a>MobTime</h3>
+        <h3><a id="mobtime" class="anchor" href="#mobtime" aria-hidden="true"><span class="octicon octicon-link"></span></a>MobTime</h3>
 
-<p>A timer designed for effective rotation during Mob Programming sessions using the Strict Navigator rule taught by <a href="http://llewellynfalco.blogspot.com/">Llewellyn Falco</a> </p>
+        <p>A timer designed for effective rotation during Mob Programming sessions using the Strict Navigator rule taught by <a href="http://llewellynfalco.blogspot.com/">Llewellyn Falco</a> </p>
 
-<h3>
-<a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h3>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Mob_programming">Wikipedia</a></li>
-<li><a href="http://mobprogramming.org/">MobProgramming</a></li>
-<li><a href="http://llewellynfalco.blogspot.com/">Llewellyn Falco</a></li>
-</ul>
-<h3>
-<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h3>
+        <h3><a id="resources" class="anchor" href="#resources" aria-hidden="true"><span class="octicon octicon-link"></span></a>Resources</h3>
+        <ul>
+          <li><a href="https://en.wikipedia.org/wiki/Mob_programming">Wikipedia</a></li>
+          <li><a href="http://mobprogramming.org/">MobProgramming</a></li>
+          <li><a href="http://llewellynfalco.blogspot.com/">Llewellyn Falco</a></li>
+        </ul>
+        <h3><a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h3>
 
-<p>UI ideas and functionality borrowed from other MobTimers like <a href="http://oss.jahed.io/agility/timer.html">Agility Timer</a>, written in JavaFX to provide the ability to be Cross Platform and better interruption of the navigator</p>
+        <p>UI ideas and functionality borrowed from other MobTimers like <a href="http://oss.jahed.io/agility/timer.html">Agility Timer</a>, written in JavaFX to provide the ability to be Cross Platform and better interruption of the navigator</p>
 
-<h3><a id="use" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h3>
-<p>
-<img alt="MobTime Start Screen" src="./images/mobtime-start.png"/>
-</p>
-<p>
-<img alt="MobTime Settings Screen" src="./images/mobtime-settings.png"/>
-</p>
-<p>
-<img alt="MobTime Running Screen" src="./images/mobtime-running.png"/>
-</p>
-<p>
-<img alt="MobTime Rotate Screen" src="./images/mobtime-rotate.png"/>
-</p>
-<h3>
-<a id="use" class="anchor" href="#use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use</h3>
+        <h3><a id="use" class="anchor" href="#screenshots" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots</h3>
+        <p>
+          <img alt="MobTime Start Screen" src="./images/mobtime-start.png"/>
+        </p>
+        <p>
+          <img alt="MobTime Settings Screen" src="./images/mobtime-settings.png"/>
+        </p>
+        <p>
+          <img alt="MobTime Running Screen" src="./images/mobtime-running.png"/>
+        </p>
+        <p>
+          <img alt="MobTime Rotate Screen" src="./images/mobtime-rotate.png"/>
+        </p>
+        <h3><a id="use" class="anchor" href="#use" aria-hidden="true"><span class="octicon octicon-link"></span></a>Use</h3>
 
-<ul>
-<li>Download the MacOSX, Windows, or Linux installer</li>
-<li>Install</li>
-<li>Default time is 7 minutes</li>
-<li>Click center of screen to start timer</li>
-</ul>
+        <ul>
+          <li>Download the MacOSX, Windows, or Linux installer</li>
+          <li>Install</li>
+          <li>Default time is 7 minutes</li>
+          <li>Click center of screen to start timer</li>
+        </ul>
 
-<p>Toolbar</p>
+        <p>Toolbar</p>
 
-<ul>
-<li>Pause to pause current user</li>
-<li>Skip to skip to the next user</li>
-<li>Stop to stop rotate nag alarm or the current users turn</li>
-<li>Settings - Add/Remove users for named rotation and to Skip to specific users </li>
-</ul>
+        <ul>
+          <li>Pause to pause current user</li>
+          <li>Skip to skip to the next user</li>
+          <li>Stop to stop rotate nag alarm or the current users turn</li>
+          <li>Settings - Add/Remove users for named rotation and to Skip to specific users </li>
+          <li>If a user is called "break" it will function as a break and show next actual user</li>
+        </ul>
 
-<h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+        <p>Script capability</p>
+        <p>A "hidden BYOS feature" that allows execution of a setup script for a users turn, use your imagination options are limitless, primarily for user preferences during their turn</p>
+        <ul>
+          <li>An environment variable MOBTIME_SCRIPT can be added to the system indicating the location of a script with {name} variable corresponding to the user name</li>
+          <li>ex. export MOBTIME_SCRIPT=/Users/myuser/{name}.py</li>
+          <li>Script will execute when that user clicks play, if script is not present will ignore</li>
+        </ul>
 
-<p><a href="https://github.com/jlcrow" class="user-mention">@jlcrow</a></p>
-<p>Thanks to my fellow Mobbers for putting the Timer to the test @apabla and @kmcrawford
 
-<h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+        <h3><a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
 
-<p><a href="mailto:webguy@greatwebguy.com">webguy@greatwebguy.com</a></p>
+        <p><a href="https://github.com/jlcrow" class="user-mention">@jlcrow</a></p>
+        <p>Thanks to my fellow Mobbers for putting the Timer to the test @apabla and @kmcrawford
+
+        <h3><a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+
+        <p><a href="mailto:webguy@greatwebguy.com">webguy@greatwebguy.com</a></p>
       </section>
     </div>
 
