@@ -1,6 +1,8 @@
 # MobTime
 Mob timer written in JavaFX
 
+![MobTime Build](https://github.com/GreatWebGuy/MobTime/workflows/MobTime%20Build/badge.svg)
+
 For Timing Mob Sessions
 
 ### Build
