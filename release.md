@@ -1,0 +1,1 @@
+* Automate build and release with actions

@@ -1,0 +1,113 @@
+name: MobTime Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  create_release:
+    name: Create release
+    runs-on: ubuntu-latest
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
+      version_semver: ${{ steps.version.outputs.version_semver }}
+    steps:
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: MobTime ${{ github.ref }}
+          body_path: release.md
+      - name: Version
+        id: version
+        run: echo "::set-output name=version_semver::${{ github.ref }}" | sed 's/v\([0-9.]\+\)/\1/'
+  build_linux:
+    needs: create_release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14.0.2
+          java-package: jdk+fx
+      - name: Build with Gradle
+        run: ./gradlew jpackage -PinstallerType=deb
+      - uses: actions/upload-artifact@v2
+        with:
+          name: MobTime-Linux
+          path: ./build/jpackage/mobtime_${{ github.ref }}-1_amd64.deb
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: ./build/jpackage/mobtime_${{ needs.create_release.outputs.version_semver }}-1_amd64.deb
+          asset_name: mobtime_${{ needs.create_release.outputs.version_semver }}-1_amd64.deb
+          asset_content_type: application/deb
+  build_windows:
+    needs: create_release
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: joschi/setup-jdk@v2
+        with:
+          java-version: '14' # The OpenJDK version to make available on the path
+      - name: Download JFX JMods
+        shell: powershell
+        run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-14-0-1-jmods-windows/ -OutFile openjfx-14.0.1_windows-x64_bin-jmods.zip
+      - name: Unzip JFX
+        shell: powershell
+        run: Expand-Archive -Path openjfx-14.0.1_windows-x64_bin-jmods.zip -Force
+      - name: Download Wix
+        shell: powershell
+        run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
+      - name: Install Wix
+        shell: powershell
+        run: ./wix311.exe /install /quiet /norestart
+      - name: Build with Gradle
+        shell: powershell
+        run: ./gradlew.bat jpackage -PinstallerType=msi
+      - uses: actions/upload-artifact@v2
+        with:
+          name: MobTime-Windows
+          path: build/jpackage/MobTime-{{ github.ref }}.msi
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: ./build/jpackage/MobTime-${{ needs.create_release.outputs.version_semver }}.msi
+          asset_name: MobTime-${{ needs.create_release.outputs.version_semver }}.msi
+          asset_content_type: application/msi
+  build_mac:
+    needs: create_release
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 14
+        uses: actions/setup-java@v1
+        with:
+          java-version: 14.0.2
+          java-package: jdk+fx
+      - name: Build with Gradle
+        run: ./gradlew jpackage -PinstallerType=pkg
+      - uses: actions/upload-artifact@v2
+        with:
+          name: MobTime-Mac
+          path: build/jpackage/MobTime-{{ github.ref }}.pkg
+      - name: Upload
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create_release.outputs.upload_url }}
+          asset_path: ./build/jpackage/MobTime-${{ needs.create_release.outputs.version_semver }}.pkg
+          asset_name: MobTime-${{ needs.create_release.outputs.version_semver }}.pkg
+          asset_content_type: application/pkg
