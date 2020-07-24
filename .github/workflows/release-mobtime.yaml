@@ -2,6 +2,8 @@ name: MobTime Release
 
 on:
   push:
+    branches:
+      - master
     tags:
       - "v*"
 
