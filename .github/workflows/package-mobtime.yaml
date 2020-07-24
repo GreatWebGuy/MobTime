@@ -1,6 +1,9 @@
 name: MobTime Build
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - master
 
 jobs:
   build_linux:
