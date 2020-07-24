@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    tags:
-      - "v*"
 
 jobs:
   create_release:
@@ -16,18 +14,20 @@ jobs:
       version_semver: ${{ steps.version.outputs.version_semver }}
     steps:
       - uses: actions/checkout@v2
+      - name: Version
+          id: version
+          run: echo "::set-output name=version_semver::$(cat .version)"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: MobTime ${{ github.ref }}
+          tag: v${{ steps.version.outputs.version_semver }}
+          commit: master
+          release_name: MobTime  v${{ steps.version.outputs.version_semver }}
           body_path: release.md
-      - name: Version
-        id: version
-        run: echo "::set-output name=version_semver::${{ github.ref }}" | sed 's/v\([0-9.]\+\)/\1/'
+
   build_linux:
     needs: create_release
     runs-on: ubuntu-latest
