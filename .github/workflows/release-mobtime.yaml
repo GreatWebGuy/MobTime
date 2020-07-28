@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-
 jobs:
   create_release:
     name: Create release
@@ -23,12 +22,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag: v${{ steps.version.outputs.version_semver }}
           tag_name: v${{ steps.version.outputs.version_semver }}
-          commit: master
           release_name: MobTime  v${{ steps.version.outputs.version_semver }}
           body_path: release.md
-
   build_linux:
     needs: create_release
     runs-on: ubuntu-latest
