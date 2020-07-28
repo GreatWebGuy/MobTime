@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Version
-          id: version
-          run: echo "::set-output name=version_semver::1.7.4"
+        id: version
+        run: echo "::set-output name=version_semver::1.7.4"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
