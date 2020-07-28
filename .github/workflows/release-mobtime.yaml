@@ -15,8 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Version
-          id: version
-          run: echo "::set-output name=version_semver::$(cat .version)"
+        id: version
+        run: echo "::set-output name=version_semver::1.7.4"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -43,7 +43,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: MobTime-Linux
-          path: ./build/jpackage/mobtime_${{ github.ref }}-1_amd64.deb
+          path: ./build/jpackage/mobtime_${{ needs.create_release.outputs.version_semver }}-1_amd64.deb
       - name: Upload
         uses: actions/upload-release-asset@v1
         env:
@@ -79,7 +79,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: MobTime-Windows
-          path: build/jpackage/MobTime-{{ github.ref }}.msi
+          path: build/jpackage/MobTime-${{ needs.create_release.outputs.version_semver }}.msi
       - name: Upload
         uses: actions/upload-release-asset@v1
         env:
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: MobTime-Mac
-          path: build/jpackage/MobTime-{{ github.ref }}.pkg
+          path: build/jpackage/MobTime-${{ needs.create_release.outputs.version_semver }}.pkg
       - name: Upload
         uses: actions/upload-release-asset@v1
         env:
