@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Version
         id: version
-        run: echo "::set-output name=version_semver::1.7.4"
+        run: echo "::set-output name=version_semver::1.7.5"
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -30,10 +30,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 14
+      - name: Set up JDK 15
         uses: actions/setup-java@v1
         with:
-          java-version: 14.0.2
+          java-version: 15.0.1
           java-package: jdk+fx
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=deb
@@ -57,13 +57,13 @@ jobs:
       - uses: actions/checkout@v2
       - uses: joschi/setup-jdk@v2
         with:
-          java-version: '14' # The OpenJDK version to make available on the path
+          java-version: '15.0.1' # The OpenJDK version to make available on the path
       - name: Download JFX JMods
         shell: powershell
-        run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-14-0-1-jmods-windows/ -OutFile openjfx-14.0.1_windows-x64_bin-jmods.zip
+        run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-15-0-1-jmods-windows/ -OutFile openjfx-15.0.1_windows-x64_bin-jmods.zip
       - name: Unzip JFX
         shell: powershell
-        run: Expand-Archive -Path openjfx-14.0.1_windows-x64_bin-jmods.zip -Force
+        run: Expand-Archive -Path openjfx-15.0.1_windows-x64_bin-jmods.zip -Force
       - name: Download Wix
         shell: powershell
         run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
@@ -91,10 +91,10 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 14
+      - name: Set up JDK 15
         uses: actions/setup-java@v1
         with:
-          java-version: 14.0.2
+          java-version: 15.0.1
           java-package: jdk+fx
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
