@@ -1,11 +1,11 @@
 plugins {
-    id "java"
-    id "application"
-    id "org.openjfx.javafxplugin"        version "0.0.8"
-    id "org.beryx.jlink"                 version "2.17.4"
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin'        version '0.0.8'
+    id 'org.beryx.jlink'                 version '2.17.4'
 }
 
-mainClassName = "com.greatwebguy.application/com.greatwebguy.application.MobTime"
+mainClassName = 'com.greatwebguy.application/com.greatwebguy.application.MobTime'
 
 repositories {
     mavenCentral()
@@ -18,11 +18,11 @@ dependencies {
     implementation ('org.kordamp.ikonli:ikonli-fontawesome-pack:11.3.5')
 }
 
-sourceCompatibility = JavaVersion.VERSION_14
-targetCompatibility = JavaVersion.VERSION_14
+sourceCompatibility = JavaVersion.VERSION_15
+targetCompatibility = JavaVersion.VERSION_15
 
 javafx {
-    version = "14"
+    version = '15.0.1'
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics', 'javafx.media' ]
 }
 
@@ -34,9 +34,9 @@ jlink {
     }
     jpackage {
         installerOptions = [
-            '--description', "Mob Timer for Mob Programming",
+            '--description', 'Mob Timer for Mob Programming',
             '--copyright', 'Copyright 2020 GreatWebGuy',
-            '--app-version', '1.7.4'
+            '--app-version', '1.7.5'
         ]
         installerType = project.findProperty('installerType') // we will pass this from the command line (example: -PinstallerType=msi)
         if (installerType == 'msi') {

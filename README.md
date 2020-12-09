@@ -7,9 +7,7 @@ For Timing Mob Sessions
 
 ### Build
 #### Requirements
-- Gradle 6.x
-- OpenJDK 14
-- Jmods for JavaFX 14
+- OpenJDK 15.0.1
 
 #### Windows
 - enable .net framework 3.5.1 on Windows 10
@@ -21,6 +19,9 @@ For Timing Mob Sessions
 
 #### Linux (Ubuntu)
 - Update paths in gradle.properties to match location of jdk and jmods
+
+### Build and run locally
+```./gradlew run```
 
 ### Package generation
 > MacOSX
