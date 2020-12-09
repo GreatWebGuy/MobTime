@@ -24,9 +24,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: joschi/setup-jdk@v2
+      - name: Set up JDK 15
+        uses: actions/setup-java@v1
         with:
-          java-version: '15.0.1' # The OpenJDK version to make available on the path
+          java-version: 15.0.1
+          java-package: jdk
       - name: Download JFX JMods
         shell: powershell
         run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-15-0-1-jmods-windows/ -OutFile openjfx-15.0.1_windows-x64_bin-jmods.zip
