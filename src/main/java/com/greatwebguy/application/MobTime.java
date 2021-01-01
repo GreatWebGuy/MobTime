@@ -37,19 +37,15 @@ import javafx.stage.WindowEvent;
 public class MobTime extends Application {
 	private Stage miniTimer;
 	private Stage mainStage;
-
-	public void init() {
-		String homeDir = System.getProperty("user.home");
-		String fileName = homeDir + "/.mobtime-lock";
-		if(!lockInstance(fileName)) {
-			Platform.exit();
-		}
-	}
 	
 	@Override
-	public void start(Stage stage) {
-		
+	public void start(Stage stage) {	
 		try {
+			String homeDir = System.getProperty("user.home");
+			String lockFile = homeDir + "/.mobtime-lock";
+			if(!lockInstance(lockFile)) {
+				Platform.exit();
+			}
 			mainStage = stage;
 			Parent root = FXMLLoader.load(getClass().getResource("application.fxml"));
 			stage.setTitle("MobTime");
