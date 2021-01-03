@@ -41,11 +41,6 @@ public class MobTime extends Application {
 	@Override
 	public void start(Stage stage) {	
 		try {
-			String homeDir = System.getProperty("user.home");
-			String lockFile = homeDir + "/.mobtime-lock";
-			if(!lockInstance(lockFile)) {
-				Platform.exit();
-			}
 			mainStage = stage;
 			Parent root = FXMLLoader.load(getClass().getResource("application.fxml"));
 			stage.setTitle("MobTime");
@@ -67,7 +62,9 @@ public class MobTime extends Application {
 	}
 
 	public static void main(String[] args) {
-		launch(args);
+		if(lockInstance()) {
+			launch(args);
+		}
 	}
 	
 	private void openMiniTimer() {
@@ -128,8 +125,10 @@ public class MobTime extends Application {
 		window.requestFocus();
 	}
 
-	private static boolean lockInstance(final String lockFile) {
+	private static boolean lockInstance() {
 		try {
+			String homeDir = System.getProperty("user.home");
+			String lockFile = homeDir + "/.mobtime-lock";
 			final File file = new File(lockFile);
 			final RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
 			final FileLock fileLock = randomAccessFile.getChannel().tryLock();
@@ -148,7 +147,7 @@ public class MobTime extends Application {
 				return true;
 			}
 		} catch (Exception e) {
-			System.out.println("Unable to create and/or lock file: " + lockFile + e);
+			System.out.println("Unable to create lock file" + e);
 		}
 		return false;
 	}
