@@ -62,9 +62,7 @@ public class MobTime extends Application {
 	}
 
 	public static void main(String[] args) {
-		if(lockInstance()) {
-			launch(args);
-		}
+		launch(args);
 	}
 	
 	private void openMiniTimer() {
