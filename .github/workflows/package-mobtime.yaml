@@ -9,11 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 15
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 15.0.1
-          java-package: jdk+fx
+          java-package: jdk
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=deb
       - uses: actions/upload-artifact@v2
@@ -24,17 +24,11 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 15
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 15.0.1
           java-package: jdk
-      - name: Download JFX JMods
-        shell: powershell
-        run: Invoke-WebRequest -Uri https://gluonhq.com/download/javafx-15-0-1-jmods-windows/ -OutFile openjfx-15.0.1_windows-x64_bin-jmods.zip
-      - name: Unzip JFX
-        shell: powershell
-        run: Expand-Archive -Path openjfx-15.0.1_windows-x64_bin-jmods.zip -Force
       - name: Download Wix
         shell: powershell
         run: Invoke-WebRequest -Uri https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe -OutFile wix311.exe
@@ -52,11 +46,11 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 15
+      - name: Set up JDK
         uses: actions/setup-java@v1
         with:
           java-version: 15.0.1
-          java-package: jdk+fx
+          java-package: jdk
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
       - uses: actions/upload-artifact@v2
