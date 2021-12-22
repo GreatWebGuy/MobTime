@@ -1,4 +1,5 @@
 .toolbar {
+	background-color: #000000;
 	-fx-background-color: black;
 	-fx-text-fill: #FFFFFF;
  }
@@ -6,56 +7,68 @@
 .toolbar-button {
 	-fx-base: #000000;
 	-fx-graphic-text-gap: 0px;
-    -fx-text-fill: #FFFFFF;
-    -fx-focus-color: transparent;
+	-fx-text-fill: #FFFFFF;
+	-fx-focus-color: transparent;
+	-fx-font-size: 15px;
+	font-size: 15px;
 }
 
 .settings-main {
+	background-color: #000000;
 	-fx-background-color: gray;
 }
 
 .settings-label {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-size: 15px;
+	font-size: 15px;
 }
 
 .settings-time {
 	-fx-text-fill: #000000;
 	-fx-font-size: 15px;
+	font-size: 15px;
 	-fx-background-color: #FFFFFF;
+	background-color: #FFFFFF;
 }
 
 .save-button {
 	-fx-base:green;
 	-fx-text-fill: #FFF;
 	-fx-font-size: 15px;
+	font-size: 15px;
 }
 
 .remove-button {
 	-fx-base:red;
 	-fx-text-fill: #FFF;
 	-fx-font-size: 15px;
+	font-size: 15px;
 }
 
 .next-button {
 	-fx-base:green;
 	-fx-text-fill: #FFF;
 	-fx-font-size: 15px;
+	font-size: 15px;
 }
 
 .turn-label {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-size: 40px;
+	font-size: 40px;
 }
 
 .next-turn-label {
 	-fx-text-fill: #FFFFFF;
 	-fx-font-size: 20px;
+	font-size: 20px;
 	-fx-text-alignment: 'right';
 }
 
 .main-pane {
 	-fx-background-color: #333333;
+	background-color: #333333;
 }
 
 .user-input:focused {

@@ -22,7 +22,7 @@
             <TextField fx:id="userInput" layoutX="17.0" layoutY="50.0" prefHeight="27.0" prefWidth="388.0" promptText="Add new participant" styleClass="user-input" />
             <Button fx:id="addUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="49.0" mnemonicParsing="false" styleClass="save-button" text="Add">
             	<graphic>
-                 <FontIcon iconLiteral="fa-plus" iconColor="white" styleClass="settings-button" />
+                 <FontIcon iconLiteral="fas-plus" iconColor="white" styleClass="settings-button" />
               </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -30,7 +30,7 @@
             </Button>
             <Button fx:id="removeUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="86.0" mnemonicParsing="false" styleClass="remove-button" text="Remove">
             	<graphic>
-                 <FontIcon iconLiteral="fa-minus" iconColor="white" styleClass="settings-button" />
+                 <FontIcon iconLiteral="fas-minus" iconColor="white" styleClass="settings-button" />
       			   </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -38,7 +38,7 @@
             </Button>
             <Button fx:id="nextUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="208.0" mnemonicParsing="false" styleClass="next-button" text="Next">
 	   			     <graphic>
-                  <FontIcon iconLiteral="fa-forward" iconColor="white" styleClass="settings-button" />
+                  <FontIcon iconLiteral="fas-fast-forward" iconColor="white" styleClass="settings-button" />
 	             </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -50,7 +50,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <FontIcon iconLiteral="fa-arrow-up" iconColor="white" styleClass="settings-button" />
+                  <FontIcon iconLiteral="fas-arrow-up" iconColor="white" styleClass="settings-button" />
                </graphic>
             </Button>
             <Button fx:id="downUser" contentDisplay="GRAPHIC_ONLY" layoutX="416.0" layoutY="155.0" mnemonicParsing="false" text="Down">
@@ -58,7 +58,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <FontIcon iconLiteral="fa-arrow-down" iconColor="white" styleClass="settings-button" />
+                  <FontIcon iconLiteral="fas-arrow-down" iconColor="white" styleClass="settings-button" />
                </graphic>
             </Button>
          </children>

@@ -3,9 +3,9 @@ module com.greatwebguy.application {
     requires transitive javafx.controls;
     requires javafx.fxml;
     requires javafx.media;
-    requires org.kordamp.iconli.core;
+    requires org.kordamp.ikonli.core;
     requires org.kordamp.ikonli.javafx;
-    requires org.kordamp.ikonli.fontawesome;
+    requires org.kordamp.ikonli.fontawesome5;
 
     exports com.greatwebguy.application to javafx.graphics, javafx.fxml;
 

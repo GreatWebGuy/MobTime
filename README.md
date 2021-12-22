@@ -37,7 +37,7 @@ For Timing Mob Sessions
 
 ### Local
 #### Requirements
-- OpenJDK 15.0.1
+- OpenJDK 17.0.1
 
 #### Windows
 - enable .net framework 3.5.1 on Windows 10

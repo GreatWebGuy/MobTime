@@ -25,7 +25,7 @@
               <items>
                 	<Button fx:id="settingsButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" text="Settings" textFill="WHITE">
                 		<graphic>
-      			        <FontIcon iconLiteral="fa-gear" iconColor="white" styleClass="toolbar-button" />
+      			        <FontIcon iconLiteral="fas-edit" iconColor="white" styleClass="toolbar-button" />
       			   		 </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -33,7 +33,7 @@
                 	</Button>
                   <Button fx:id="stopButton" contentDisplay="GRAPHIC_ONLY" mnemonicParsing="false" styleClass="toolbar-button" text="Stop" textFill="WHITE">
                  		<graphic>
-                      <FontIcon iconLiteral="fa-stop" iconColor="white" styleClass="toolbar-button" />
+                      <FontIcon iconLiteral="fas-stop" iconColor="white" styleClass="toolbar-button" />
       			         </graphic>
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -44,7 +44,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <graphic>
-                        <FontIcon iconLiteral="fa-forward" iconColor="white" styleClass="toolbar-button" />
+                        <FontIcon iconLiteral="fas-fast-forward" iconColor="white" styleClass="toolbar-button" />
                      </graphic>
                   </Button>
                   <Button fx:id="pauseButton" contentDisplay="GRAPHIC_ONLY" layoutX="134.0" layoutY="10.0" mnemonicParsing="false" styleClass="toolbar-button" text="Pause" textFill="WHITE">
@@ -52,7 +52,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <graphic>
-                        <FontIcon iconLiteral="fa-play" iconColor="white" styleClass="toolbar-button" />
+                        <FontIcon iconLiteral="fas-play" iconColor="white" styleClass="toolbar-button" />
                      </graphic>
                   </Button>
               </items>
@@ -61,7 +61,7 @@
       </AnchorPane>
     <AnchorPane fx:id="bottomPane" maxHeight="-1.0" maxWidth="-1.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="turnLabel" alignment="CENTER" layoutX="-1.0" layoutY="402.0" prefHeight="50.0" prefWidth="826.0" styleClass="turn-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label fx:id="turnLabel" alignment="CENTER" layoutX="-1.0" layoutY="452.0" prefHeight="50.0" prefWidth="826.0" styleClass="turn-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
         <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutY="136.0" lineSpacing="2.0" prefHeight="219.0" prefWidth="826.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
           <font>
             <Font name="Monospaced Regular" size="187.0" />

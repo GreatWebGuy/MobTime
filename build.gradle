@@ -1,6 +1,6 @@
 plugins {
     id 'application'
-    id 'org.beryx.jlink'                 version '2.23.1'
+    id 'org.beryx.jlink'                 version '2.24.4'
 }
 
 def currentOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem
@@ -28,14 +28,13 @@ java {
 }
 
 dependencies {
-    implementation "org.openjfx:javafx-base:15.0.1:${platform}"
-    implementation "org.openjfx:javafx-controls:15.0.1:${platform}"
-    implementation "org.openjfx:javafx-graphics:15.0.1:${platform}"
-    implementation "org.openjfx:javafx-fxml:15.0.1:${platform}"
-    implementation "org.openjfx:javafx-media:15.0.1:${platform}"
-    implementation 'org.kordamp.ikonli:ikonli-core:11.3.5'
-    implementation 'org.kordamp.ikonli:ikonli-javafx:11.3.5'
-    implementation 'org.kordamp.ikonli:ikonli-fontawesome-pack:11.3.5'
+    implementation "org.openjfx:javafx-base:17.0.1:${platform}"
+    implementation "org.openjfx:javafx-controls:17.0.1:${platform}"
+    implementation "org.openjfx:javafx-graphics:17.0.1:${platform}"
+    implementation "org.openjfx:javafx-fxml:17.0.1:${platform}"
+    implementation "org.openjfx:javafx-media:17.0.1:${platform}"
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.2.0'
+    implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.2.0'
 }
 
 sourceCompatibility = JavaVersion.VERSION_15

@@ -1,21 +1,10 @@
 package com.greatwebguy.application;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.io.RandomAccessFile;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.nio.channels.FileLock;
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -37,9 +26,9 @@ import javafx.stage.WindowEvent;
 public class MobTime extends Application {
 	private Stage miniTimer;
 	private Stage mainStage;
-	
+
 	@Override
-	public void start(Stage stage) {	
+	public void start(Stage stage) {
 		try {
 			mainStage = stage;
 			Parent root = FXMLLoader.load(getClass().getResource("application.fxml"));
@@ -49,12 +38,12 @@ public class MobTime extends Application {
 			stage.setScene(scene);
 			stage.show();
 			openMiniTimer();
-			
+
 			stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-		        @Override
-		        public void handle(final WindowEvent event) {
-		        	miniTimer.close();
-		        }
+				@Override
+				public void handle(final WindowEvent event) {
+					miniTimer.close();
+				}
 			});
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,7 +55,7 @@ public class MobTime extends Application {
 			launch(args);
 		}
 	}
-	
+
 	private void openMiniTimer() {
 		if (miniTimer == null) {
 			int height = 40;
@@ -118,7 +107,7 @@ public class MobTime extends Application {
 			});
 		}
 	}
-	
+
 	public void showMainWindow() {
 		Stage window = (Stage) mainStage.getScene().getWindow();
 		window.toFront();
@@ -143,7 +132,7 @@ public class MobTime extends Application {
 							System.out.println("Unable to remove lock file: " + lockFile + e);
 						}
 					}
-					});
+				});
 				return true;
 			}
 		} catch (Exception e) {
@@ -151,5 +140,5 @@ public class MobTime extends Application {
 		}
 		return false;
 	}
-	
+
 }
