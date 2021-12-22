@@ -1,3 +1,3 @@
-* #27 Version v1.7.5 does not open a window
+* Fix local build/run
 * Bump Gradle version
 * Update Readme
