@@ -52,6 +52,9 @@ public class TimeController implements Initializable {
 	@FXML
 	private Button settingsButton;
 
+	@FXML // fx:id="muteButton"
+	private Button muteButton;
+
 	@FXML // fx:id="timerLabel"
 	private Label timerLabel;
 
@@ -73,12 +76,14 @@ public class TimeController implements Initializable {
 		assert skipButton != null : "fx:id=\"skipButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert settingsButton != null
 				: "fx:id=\"settingsButton\" was not injected: check your FXML file 'application.fxml'.";
+		assert muteButton != null : "fx:id=\"muteButton\" was not injected: check your FXML file 'application.fxml'.";
 		assert timerLabel != null : "fx:id=\"timerLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert turnLabel != null : "fx:id=\"turnLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert nextTurnLabel != null : "fx:id=\"nextTurnLabel\" was not injected: check your FXML file 'application.fxml'.";
 		assert bottomPane != null : "fx:id=\"bottomPane\" was not injected: check your FXML file 'application.fxml'.";
 		Settings.instance().loadUsers();
 		Settings.instance().loadTime();
+		Settings.instance().loadMuteStatus();
 
 		timerLabel.textProperty().bind(timeMinutes);
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
@@ -91,6 +96,7 @@ public class TimeController implements Initializable {
 		pauseButton.setOnAction(event -> pauseButtonPressed());
 		skipButton.setOnAction(event -> skipButtonPressed());
 		settingsButton.setOnAction(event -> settingsButtonPressed(((Node) event.getSource()).getScene().getWindow()));
+		muteButton.setOnAction(event -> muteButtonPressed());
 	}
 
 	private void settingsButtonPressed(Window owner) {
@@ -150,10 +156,30 @@ public class TimeController implements Initializable {
 		}
 	}
 
+	private void muteButtonPressed() {
+		if (Settings.instance().isMuted()) {
+			Settings.instance().setMuted(false);
+			FontIcon icon = new FontIcon("fas-bell-slash");
+			icon.setIconColor(Color.WHITE);
+			muteButton.setGraphic(icon);
+			muteButton.setText("Mute");
+			Settings.instance().storeMuteStatus();
+		} else {
+			Settings.instance().setMuted(true);
+			FontIcon icon = new FontIcon("fas-bell");
+			icon.setIconColor(Color.WHITE);
+			muteButton.setGraphic(icon);
+			muteButton.setText("Unmute");
+			Settings.instance().storeMuteStatus();
+		}
+	}
+
 	private void showRotate() {
 		URL doorBellWav = getClass().getResource("door-bell.wav");
 		AudioClip doorBellSound = new AudioClip(doorBellWav.toString());
-		doorBellSound.play();
+		if (!Settings.instance().isMuted()) {
+			doorBellSound.play();
+		}
 		if (timeline != null) {
 			timeline.stop();
 		}
@@ -168,7 +194,9 @@ public class TimeController implements Initializable {
 			public void handle(ActionEvent actionEvent) {
 				if (timeMinutes.getValue().equals("Rotate")) {
 					showMainWindow();
-					doorBellSound.play();
+					if (!Settings.instance().isMuted()) {
+						doorBellSound.play();
+					}
 				} else {
 					nag.stop();
 				}
