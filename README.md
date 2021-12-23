@@ -37,17 +37,11 @@ For Timing Mob Sessions
 
 ### Local
 #### Requirements
-- OpenJDK 15.0.1
+- OpenJDK 17.0.1
 
 #### Windows
 - enable .net framework 3.5.1 on Windows 10
 - Install WIX build tools
-- Update paths in gradle.properties to match location of jdk and jmods
-
-#### MacOS
-- Update paths in gradle.properties to match location of jdk and jmods
-
-#### Linux (Ubuntu)
 - Update paths in gradle.properties to match location of jdk and jmods
 
 ### Build and run locally
