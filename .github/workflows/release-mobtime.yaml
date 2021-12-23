@@ -33,7 +33,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 15.0.1
+          java-version: 17.0.1
           java-package: jdk
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=deb
@@ -58,7 +58,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 15.0.1
+          java-version: 17.0.1
           java-package: jdk
       - name: Download Wix
         shell: powershell
@@ -90,7 +90,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 15.0.1
+          java-version: 17.0.1
           java-package: jdk
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
