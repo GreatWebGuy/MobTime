@@ -48,7 +48,7 @@ dependencies {
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = 'mobtime-${platform}-${currentArch}'
+        name = "mobtime-${platform}-${currentArch}"
     }
     jpackage {
         installerOptions = [
