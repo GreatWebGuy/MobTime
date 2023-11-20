@@ -61,7 +61,7 @@ jobs:
         run: ./gradlew jpackage -PinstallerType=pkg
       - uses: actions/upload-artifact@v3
         with:
-          name: MobTime-Mac
+          name: MobTime-Mac-x86
           path: build/jpackage/MobTime-*.pkg
   build_mac_arm64:
     runs-on: mbpro-m3
@@ -78,5 +78,5 @@ jobs:
         run: ./gradlew jpackage -PinstallerType=pkg
       - uses: actions/upload-artifact@v3
         with:
-          name: MobTime-Mac
+          name: MobTime-Mac-arm64
           path: build/jpackage/MobTime-*.pkg          

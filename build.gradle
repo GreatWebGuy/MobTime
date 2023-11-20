@@ -13,7 +13,11 @@ if (currentOS.isWindows()) {
 } else if (currentOS.isLinux()) {
     platform = 'linux'
 } else if (currentOS.isMacOsX()) {
-    platform = 'mac-' + currentArch
+    if (currentArch == 'aarch64') {
+        platform = 'mac-' + currentArch
+    } else {
+         platform = 'mac'
+    }
 }
 
 application {
