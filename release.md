@@ -1,6 +1,4 @@
-* Fix local Gradle build/run
 * Upgrade Gradle version
-* Upgrade to Java 17
-* Update to FontAwesome 5
-* Add Mute Feature
+* Upgrade to Java 21
+* Add support for Apple Silicon
 * Update Readme

@@ -1,16 +1,19 @@
+import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 plugins {
     id 'application'
-    id 'org.beryx.jlink'                 version '2.24.4'
+    id 'org.beryx.jlink'                 version '3.0.1'
 }
 
-def currentOS = org.gradle.nativeplatform.platform.internal.DefaultNativePlatform.currentOperatingSystem
+def currentPlatform = new DefaultNativePlatform("current")
+def currentOS = currentPlatform.getOperatingSystem()
+String currentArch = currentPlatform.getArchitecture().getName()
 String platform
 if (currentOS.isWindows()) {
     platform = 'win'
 } else if (currentOS.isLinux()) {
     platform = 'linux'
 } else if (currentOS.isMacOsX()) {
-    platform = 'mac'
+    platform = 'mac-' + currentArch
 }
 
 application {
@@ -24,20 +27,19 @@ repositories {
 
 java {
     modularity.inferModulePath = true
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 dependencies {
-    implementation "org.openjfx:javafx-base:17.0.1:${platform}"
-    implementation "org.openjfx:javafx-controls:17.0.1:${platform}"
-    implementation "org.openjfx:javafx-graphics:17.0.1:${platform}"
-    implementation "org.openjfx:javafx-fxml:17.0.1:${platform}"
-    implementation "org.openjfx:javafx-media:17.0.1:${platform}"
-    implementation 'org.kordamp.ikonli:ikonli-javafx:12.2.0'
-    implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.2.0'
+    implementation "org.openjfx:javafx-base:21.0.1:${platform}"
+    implementation "org.openjfx:javafx-controls:21.0.1:${platform}"
+    implementation "org.openjfx:javafx-graphics:21.0.1:${platform}"
+    implementation "org.openjfx:javafx-fxml:21.0.1:${platform}"
+    implementation "org.openjfx:javafx-media:21.0.1:${platform}"
+    implementation 'org.kordamp.ikonli:ikonli-javafx:12.3.1'
+    implementation 'org.kordamp.ikonli:ikonli-fontawesome5-pack:12.3.1'
 }
-
-sourceCompatibility = JavaVersion.VERSION_17
-targetCompatibility = JavaVersion.VERSION_17
 
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
@@ -48,7 +50,7 @@ jlink {
         installerOptions = [
             '--description', 'Mob Timer for Mob Programming',
             '--copyright', 'Copyright 2021 GreatWebGuy',
-            '--app-version', '1.7.7'
+            '--app-version', '1.7.8'
         ]
         installerType = project.findProperty('installerType')
         if (installerType == 'msi') {

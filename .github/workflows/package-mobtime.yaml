@@ -12,7 +12,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 17.0.1
+          java-version: 21.0.1
           java-package: jdk
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=deb
@@ -27,7 +27,7 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 17.0.1
+          java-version: 21.0.1
           java-package: jdk
       - name: Download Wix
         shell: powershell
@@ -42,14 +42,14 @@ jobs:
         with:
           name: MobTime-Windows
           path: build/jpackage/MobTime-*.msi
-  build_mac:
+  build_mac_amd64:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK
         uses: actions/setup-java@v1
         with:
-          java-version: 17.0.1
+          java-version: 21.0.1
           java-package: jdk
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
@@ -57,3 +57,18 @@ jobs:
         with:
           name: MobTime-Mac
           path: build/jpackage/MobTime-*.pkg
+  build_mac_arm64:
+    runs-on: mbpro-m3
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 21.0.1
+          java-package: jdk
+      - name: Build with Gradle
+        run: ./gradlew jpackage -PinstallerType=pkg
+      - uses: actions/upload-artifact@v2
+        with:
+          name: MobTime-Mac
+          path: build/jpackage/MobTime-*.pkg          
