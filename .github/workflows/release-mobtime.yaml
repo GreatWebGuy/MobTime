@@ -50,7 +50,7 @@ jobs:
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: ./build/jpackage/mobtime*.deb
-          asset_name: mobtime*.deb
+          asset_name: mobtime-linux-x86-64_${{ needs.create_release.outputs.version_semver }}.deb
           asset_content_type: application/deb
   build_windows:
     needs: create_release
@@ -84,7 +84,7 @@ jobs:
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: ./build/jpackage/mobtime*.msi
-          asset_name: mobtime*.msi
+          asset_name: mobtime-win-x86-64-${{ needs.create_release.outputs.version_semver }}.msi
           asset_content_type: application/msi
   build_mac_amd64:
     needs: create_release
@@ -111,7 +111,7 @@ jobs:
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: ./build/jpackage/mobtime*.pkg
-          asset_name: mobtime*.pkg
+          asset_name: mobtime-mac-x86-64-${{ needs.create_release.outputs.version_semver }}.pkg
           asset_content_type: application/pkg
   build_mac_arm64:
     needs: create_release
@@ -138,5 +138,5 @@ jobs:
         with:
           upload_url: ${{ needs.create_release.outputs.upload_url }}
           asset_path: ./build/jpackage/mobtime*.pkg
-          asset_name: mobtime*.pkg
+          asset_name: mobtime-mac-aarch64-aarch64-${{ needs.create_release.outputs.version_semver }}.pkg
           asset_content_type: application/pkg
