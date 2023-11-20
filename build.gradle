@@ -48,7 +48,7 @@ dependencies {
 jlink {
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = 'MobTime'
+        name = 'mobtime-${platform}-${currentArch}'
     }
     jpackage {
         installerOptions = [
@@ -65,13 +65,7 @@ jlink {
             ]
         }
         if (installerType == 'pkg') {
-            if (currentArch == 'aarch64') {
-                name = 'MobTime-aarch64'
-                imageOptions += ['--icon', 'src/main/deploy/package/macosx/MobTime.icns']
-            } else {
-                name = 'Mobtime-x86_64'
-                imageOptions += ['--icon', 'src/main/deploy/package/macosx/MobTime.icns']
-            }
+            imageOptions += ['--icon', 'src/main/deploy/package/macosx/MobTime.icns']
         }
         if (installerType in ['deb', 'rpm']) {
             imageOptions += ['--icon', 'src/main/deploy/package/default/icon_256x256.png']
