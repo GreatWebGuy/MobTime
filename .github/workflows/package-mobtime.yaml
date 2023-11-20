@@ -21,7 +21,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: MobTime-Linux
-          path: ./build/jpackage/mobtime_*.deb
+          path: ./build/jpackage/mobtime*.deb
   build_windows:
     runs-on: windows-latest
     steps:
@@ -45,7 +45,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: MobTime-Windows
-          path: build/jpackage/MobTime-*.msi
+          path: build/jpackage/mobtime*.msi
   build_mac_amd64:
     runs-on: macos-latest
     steps:
@@ -62,7 +62,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: MobTime-Mac-x86
-          path: build/jpackage/MobTime-*.pkg
+          path: build/jpackage/mobtime-*.pkg
   build_mac_arm64:
     runs-on: mbpro-m3
     steps:
@@ -79,4 +79,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: MobTime-Mac-arm64
-          path: build/jpackage/MobTime-*.pkg          
+          path: build/jpackage/mobtime*.pkg      
