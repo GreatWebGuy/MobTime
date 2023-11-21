@@ -14,7 +14,7 @@ if (currentOS.isWindows()) {
     fileName = "mobtime-windows-" + currentArch
 } else if (currentOS.isLinux()) {
     platform = 'linux'
-    fileName = "mobtime-linux-"
+    fileName = "mobtime-linux"
 } else if (currentOS.isMacOsX()) {
     fileName = "mobtime-macos-" + currentArch
     if (currentArch == 'aarch64') {
