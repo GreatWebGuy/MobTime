@@ -51,7 +51,7 @@ jobs:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
           name: MobTime  v${{ needs.create_release.outputs.version_semver }}
           files: |
-            build/jpackage/mobtime-linux-x86-64_${{ needs.create_release.outputs.version_semver }}_amd64.deb
+            build/jpackage/mobtime-linux_${{ needs.create_release.outputs.version_semver }}_amd64.deb
   build_windows:
     needs: create_release
     runs-on: windows-latest
@@ -85,7 +85,7 @@ jobs:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
           name: MobTime  v${{ needs.create_release.outputs.version_semver }}
           files: |
-            build/jpackage/mobtime-win-x86-64-${{ needs.create_release.outputs.version_semver }}.msi
+            build/jpackage/mobtime-windows-x86-64-${{ needs.create_release.outputs.version_semver }}.msi
   build_mac_amd64:
     needs: create_release
     runs-on: macos-latest
@@ -112,7 +112,7 @@ jobs:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
           name: MobTime  v${{ needs.create_release.outputs.version_semver }}
           files: |
-            build/jpackage/mobtime-mac-x86-64-${{ needs.create_release.outputs.version_semver }}.pkg
+            build/jpackage/mobtime-macos-x86-64-${{ needs.create_release.outputs.version_semver }}.pkg
   build_mac_arm64:
     needs: create_release
     runs-on: mbpro-m3
@@ -139,4 +139,4 @@ jobs:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
           name: MobTime  v${{ needs.create_release.outputs.version_semver }}
           files: |
-            build/jpackage/mobtime-mac-aarch64-aarch64-${{ needs.create_release.outputs.version_semver }}.pkg
+            build/jpackage/mobtime-macos-aarch64-${{ needs.create_release.outputs.version_semver }}.pkg
