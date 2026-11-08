@@ -129,7 +129,7 @@ jobs:
         run: ./gradlew jpackage -PinstallerType=pkg
       - uses: actions/upload-artifact@v3
         with:
-          name: MobTime-Mac-amd64
+          name: MobTime-Mac-arm64
           path: build/jpackage/mobtime*.pkg
       - name: Upload
         uses: softprops/action-gh-release@v1
