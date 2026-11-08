@@ -23,7 +23,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ steps.version.outputs.version_semver }}
-          name: MobTime  v${{ steps.version.outputs.version_semver }}
+          name: MobTime v${{ steps.version.outputs.version_semver }}
           body_path: release.md
   build_linux:
     needs: create_release
@@ -49,7 +49,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
-          name: MobTime  v${{ needs.create_release.outputs.version_semver }}
+          name: MobTime v${{ needs.create_release.outputs.version_semver }}
           files: |
             build/jpackage/mobtime-linux_${{ needs.create_release.outputs.version_semver }}_amd64.deb
   build_windows:
@@ -83,7 +83,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
-          name: MobTime  v${{ needs.create_release.outputs.version_semver }}
+          name: MobTime v${{ needs.create_release.outputs.version_semver }}
           files: |
             build/jpackage/mobtime-windows-x86-64-${{ needs.create_release.outputs.version_semver }}.msi
   build_mac_amd64:
@@ -110,7 +110,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
-          name: MobTime  v${{ needs.create_release.outputs.version_semver }}
+          name: MobTime v${{ needs.create_release.outputs.version_semver }}
           files: |
             build/jpackage/mobtime-macos-x86-64-${{ needs.create_release.outputs.version_semver }}.pkg
   build_mac_arm64:
@@ -137,6 +137,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ needs.create_release.outputs.version_semver }}
-          name: MobTime  v${{ needs.create_release.outputs.version_semver }}
+          name: MobTime v${{ needs.create_release.outputs.version_semver }}
           files: |
             build/jpackage/mobtime-macos-aarch64-${{ needs.create_release.outputs.version_semver }}.pkg
