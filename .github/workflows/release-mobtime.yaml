@@ -39,7 +39,7 @@ jobs:
           cache: 'gradle'
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=deb
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: MobTime-Linux
           path: ./build/jpackage/mobtime*.deb
@@ -73,7 +73,7 @@ jobs:
       - name: Build with Gradle
         shell: powershell
         run: ./gradlew.bat jpackage -PinstallerType=msi
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: MobTime-Windows
           path: build/jpackage/mobtime*.msi
@@ -100,7 +100,7 @@ jobs:
           cache: 'gradle'
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: MobTime-Mac-amd64
           path: build/jpackage/mobtime*.pkg
@@ -127,7 +127,7 @@ jobs:
           cache: 'gradle'
       - name: Build with Gradle
         run: ./gradlew jpackage -PinstallerType=pkg
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: MobTime-Mac-amd64
           path: build/jpackage/mobtime*.pkg
