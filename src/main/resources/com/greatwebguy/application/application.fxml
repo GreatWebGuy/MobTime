@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox minHeight="597.0" minWidth="826.0" prefHeight="597.0" prefWidth="826.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.greatwebguy.application.TimeController">
+<VBox prefHeight="597.0" prefWidth="826.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="com.greatwebguy.application.TimeController">
   <children>
       <AnchorPane nodeOrientation="LEFT_TO_RIGHT" styleClass="toolbar">
          <children>
@@ -67,15 +67,15 @@
             </ToolBar>
          </children>
       </AnchorPane>
-    <AnchorPane fx:id="bottomPane" maxHeight="-1.0" maxWidth="-1.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
+    <AnchorPane fx:id="bottomPane" maxHeight="-1.0" maxWidth="-1.0" minHeight="0.0" minWidth="0.0" styleClass="main-pane" VBox.vgrow="ALWAYS">
       <children>
-            <Label fx:id="turnLabel" alignment="CENTER" layoutX="-1.0" layoutY="452.0" prefHeight="50.0" prefWidth="826.0" styleClass="turn-label" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" layoutY="136.0" lineSpacing="2.0" prefHeight="219.0" prefWidth="826.0" style="&#10;" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+            <Label fx:id="turnLabel" alignment="CENTER" prefHeight="50.0" styleClass="turn-label" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+        <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" lineSpacing="2.0" minHeight="0.0" minWidth="0.0" text="Start" textAlignment="CENTER" textFill="WHITE" wrapText="false" AnchorPane.bottomAnchor="105.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
           <font>
             <Font name="Monospaced Regular" size="187.0" />
           </font>
         </Label>
-            <Label fx:id="nextTurnLabel" alignment="BASELINE_RIGHT" centerShape="false" contentDisplay="RIGHT" layoutX="482.0" layoutY="508.0" prefHeight="50.0" prefWidth="334.0" scaleShape="false" styleClass="next-turn-label" textAlignment="RIGHT">
+            <Label fx:id="nextTurnLabel" alignment="BASELINE_RIGHT" centerShape="false" contentDisplay="RIGHT" prefHeight="50.0" scaleShape="false" styleClass="next-turn-label" textAlignment="RIGHT" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <font>
                   <Font size="11.0" />
                </font>

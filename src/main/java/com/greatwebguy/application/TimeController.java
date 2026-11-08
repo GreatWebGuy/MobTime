@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.animation.Animation.Status;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
@@ -89,6 +90,9 @@ public class TimeController implements Initializable {
 		turnLabel.textProperty().bind(Settings.instance().userMessage);
 		nextTurnLabel.textProperty().bind(Settings.instance().nextUserMessage);
 		bottomPane.styleProperty().bind(paneColor);
+		timerLabel.styleProperty().bind(Bindings.createStringBinding(
+				() -> "-fx-font-size: " + timerFontSize(timerLabel.getWidth(), timerLabel.getHeight()) + "px;",
+				timerLabel.widthProperty(), timerLabel.heightProperty()));
 		Settings.instance().updateUserDisplay();
 
 		startButton.setOnAction(event -> startButtonPressed());
@@ -97,6 +101,11 @@ public class TimeController implements Initializable {
 		skipButton.setOnAction(event -> skipButtonPressed());
 		settingsButton.setOnAction(event -> settingsButtonPressed(((Node) event.getSource()).getScene().getWindow()));
 		muteButton.setOnAction(event -> muteButtonPressed());
+	}
+
+	// Largest size at which the widest timer text ("Rotate") fits the given area.
+	private static double timerFontSize(double width, double height) {
+		return Math.max(1, Math.floor(Math.min(width * 0.2264, height * 0.8)));
 	}
 
 	private void settingsButtonPressed(Window owner) {
