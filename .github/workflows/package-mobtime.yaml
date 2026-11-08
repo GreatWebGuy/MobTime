@@ -64,7 +64,7 @@ jobs:
           name: MobTime-Mac-x86
           path: build/jpackage/mobtime-*.pkg
   build_mac_arm64:
-    runs-on: mbpro-m3
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK
