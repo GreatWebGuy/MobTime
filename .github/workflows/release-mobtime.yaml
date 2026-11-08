@@ -88,7 +88,7 @@ jobs:
             build/jpackage/mobtime-windows-x86-64-${{ needs.create_release.outputs.version_semver }}.msi
   build_mac_amd64:
     needs: create_release
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK

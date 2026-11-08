@@ -47,7 +47,7 @@ jobs:
           name: MobTime-Windows
           path: build/jpackage/mobtime*.msi
   build_mac_amd64:
-    runs-on: macos-latest
+    runs-on: macos-15-intel
     steps:
       - uses: actions/checkout@v4
       - name: Set up JDK
