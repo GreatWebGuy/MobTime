@@ -36,6 +36,8 @@ public class MobTime extends Application {
 			stage.getIcons().add(new Image(getClass().getResourceAsStream("icon.png")));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
+			stage.setMinWidth(420);
+			stage.setMinHeight(320);
 			stage.show();
 			openMiniTimer();
 
